@@ -71,7 +71,7 @@ fi
        echo "Creating settings folder..."
        mkdir /1/config
 
-       echo "Getting and storing username..."
+       echo "Getting and storing username  (not available yet)..."
        #sudo cat > /1/config/dat.json << ENDOFFILE
        #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - $whoami","user":" $whoami"}
        #ENDOFFILE
@@ -80,7 +80,7 @@ fi
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
-       echo "$()" > /1/config/dat.json
+#       echo "$()" > /1/config/dat.json
 
        #sudo cat > /1/config/dat.json << ENDOFFILE
 #","user":" 
