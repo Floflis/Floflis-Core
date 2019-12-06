@@ -64,7 +64,7 @@ then
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
-       echo "$(whoami)" >> /1/config/dat.json
+       echo "$(whoami)" > /1/config/dat.json
 
        #sudo cat > /1/config/dat.json << ENDOFFILE
 #","user":" 
@@ -126,7 +126,7 @@ fi
    sudo mkdir /1/src
    
 echo "- Installing Floflis Core as init program..."
-sudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init
+sudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/core/flo-init
 sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
 
    echo "- Cleanning install, saving settings..."
