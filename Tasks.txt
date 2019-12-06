@@ -1,0 +1,43 @@
+detect root
+show non effective user
+----------------------------------------------------------
+
+make updates module work
+
+recipes
+/home/mesquita/Desktop/Floflis Recipes/
+
+test if cmd/program is already installed
+https://stackoverflow.com/questions/7522712/how-to-check-if-command-exists-in-a-shell-script/39983421
+
+/home/mesquita/Downloads/xz-utils/
+
+if MacOS, tell its support is alpha
+install jq
+if flofmach != Mac and flofarch 386:
+sudo cp jq-linux32.tar.xz
+tar -xJf jq-linux32.tar.xz
+chmod +x ./jq-linux32
+./jq-linux32
+-----
+if flofmach != Mac and flofarch amd64:
+tar -xJf jq-linux64.tar.xz
+chmod +x ./jq-linux64
+./jq-linux64
+-----
+if flofmach Mac and flofarch amd64:
+chmod +x ./jq-osx-amd64
+./jq
+
+/var/cache/apt/archives/
+sudo dpkg -i /path/to/deb/file
+sudo apt-get install -f
+
+sudo apt-get update && sudo apt-get install gdebi
+
+install elinks
+install curl
+install git
+install ceni
+
+create /1/config/dat.json containing username (append data to file with variables)

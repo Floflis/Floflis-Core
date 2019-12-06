@@ -1,0 +1,5 @@
+#!/bin/bash
+if [ -e /usr/lib/floflis/layers/core/modules/update ]
+then
+    /usr/lib/floflis/layers/core/modules/update
+fi
