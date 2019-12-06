@@ -50,8 +50,24 @@ then
 
    if [ -e /1/temp2.txt ]
    then
-       rm /1/temp.txt
-       rm /1/temp2.txt
+      rm /1/temp.txt
+      rm /1/temp2.txt
+       
+      if [ "$flofarch" = "386" ]; then
+         tar -xzf include/jq/jq-linux32.tar.gz
+         sudo mv jq /usr/bin
+         chmod +x /usr/bin/jq
+         echo "Testing if jq works:"
+         jq
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         tar -xzf include/jq/jq-linux64.tar.gz
+         sudo mv jq /usr/bin
+         chmod +x /usr/bin/jq
+         echo "Testing if jq works:"
+         jq
+fi
+
        echo "Creating settings folder..."
        mkdir /1/config
 
@@ -64,7 +80,7 @@ then
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
-       echo "$(whoami)" > /1/config/dat.json
+       echo "$()" > /1/config/dat.json
 
        #sudo cat > /1/config/dat.json << ENDOFFILE
 #","user":" 
@@ -108,20 +124,6 @@ fi
    # Creating HTML5 folder...
    # /1/html5
    # Installing HTML5 files...
-   if [ "$flofarch" = "386" ]; then
-      tar -xzf include/jq/jq-linux32.tar.gz
-      sudo mv jq /usr/bin
-      chmod +x /usr/bin/jq
-      echo "Testing if jq works:"
-      jq
-fi
-   if [ "$flofarch" = "amd64" ]; then
-      tar -xzf include/jq/jq-linux64.tar.gz
-      sudo mv jq /usr/bin
-      chmod +x /usr/bin/jq
-      echo "Testing if jq works:"
-      jq
-fi
    echo "Installing /1/src"
    sudo mkdir /1/src
    
