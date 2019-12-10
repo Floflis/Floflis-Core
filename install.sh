@@ -127,13 +127,16 @@ fi
    echo "Installing /1/src"
    sudo mkdir /1/src
    
-echo "- Installing Floflis Core as init program..."
-sudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/core/flo-init
-sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
+   echo "- Installing Floflis Core as init program..."
+   sudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/core/flo-init
+   sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
+
+   echo "- Installing Floflis Central..."
+   sudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
 
    echo "- Cleanning install, saving settings..."
    sudo rm /usr/lib/floflis/layers/core/install.sh
-   sudo sed -i 's/dna/core/g' /usr/lib/floflis/config
+   sudo sed -i 's/core/soil/g' /usr/lib/floflis/config && sudo sed -i 's/dna/core/g' /usr/lib/floflis/config
    echo "(✓) Floflis DNA has been upgraded to Floflis Core."
 else
    echo "(X) Floflis DNA isn't found. Please install Floflis DNA before installing Floflis Core."

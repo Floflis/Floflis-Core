@@ -1,5 +1,19 @@
 #!/bin/bash
 if [ -e /usr/lib/floflis/layers/core/modules/update ]
 then
-    /usr/lib/floflis/layers/core/modules/update
+    source /usr/lib/floflis/layers/core/modules/update
+fi
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+   echo "Settings:"
+   echo "   floflis settings            Opens CLI settings"
+   echo "   floflis central             Opens exclusive settings specifially for Floflis"
+fi
+
+if [ "$1" = "settings" ]; then
+   antiX-cli-cc
+fi
+
+if [ "$1" = "central" ]; then
+   floflis-central
 fi
