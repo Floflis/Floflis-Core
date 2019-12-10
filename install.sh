@@ -52,6 +52,12 @@ then
    then
       rm /1/temp.txt
       rm /1/temp2.txt
+      
+      if [ -e /usr/local/bin/*antiX* ]; then
+         echo "- This is a antiX-based OS. Updating files..."
+         sudo cp -f ./include/antiX/cli-installer /usr/local/bin/
+         sudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
+fi
        
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/jq/jq-linux32.tar.gz
