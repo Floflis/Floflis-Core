@@ -65,7 +65,7 @@ re_init() {
     new_menu     live_cc $"antiX Live Commands"      make_live_menu
     new_menu       av_cc $"YouNet (Free Internet)"    make_av_menu
     new_menu sys_tool_cc $"Profile, contacts"             make_sys_tool_menu
-    new_menu sys_info_cc $"System Information"       make_sys_info_menu
+    new_menu sys_info_cc $"System Updates"       make_sys_info_menu
     new_menu  console_cc $"Console Utilities"        make_console_menu
     new_menu      net_cc $"Security"    make_net_menu
     new_menu      off_cc $"Office Applications"      make_off_menu
@@ -96,10 +96,10 @@ key_callback() {
 
 make_main_menu() {
     start_menu_list
-    entry $"YouNet (Free Internet)"
-    entry $"Security"
-    entry $"Profile, contacts"
-    entry $"System Information"
+    entry "$(printf "$cyan%s" $"YouNet (Free Internet)")"
+    entry "$(printf "$red%s" $"Security")"
+    entry "$(printf "$magenta%s" $"Profile, contacts")"
+    entry "$(printf "$green%s" $"System Updates")"
     entry $"Configuration Files"
     entry $"Live System Centre"
 
@@ -123,7 +123,7 @@ main_cc_on_enter() {
            $"YouNet (Free Internet)") select_menu av_cc           ;;
        $"Security") select_menu net_cc          ;;
                 $"Profile, contacts") select_menu sys_tool_cc     ;;
-          $"System Information") select_menu sys_info_cc     ;;
+          $"System Updates") select_menu sys_info_cc     ;;
          $"Configuration Files") select_menu config_cc       ;;
           $"Live System Centre") select_menu live_cc         ;;
            $"Console Utilities") select_menu console_cc      ;;
