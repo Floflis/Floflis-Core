@@ -107,37 +107,36 @@ fi
 
 echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
 echo "Do you want to install git? [Y/n]"
-while true; do
 read insgit
 case $insgit in
    [nN])
-      echo "${ok}";;
+      echo "${ok}"
+      break ;;
    [yY])
       echo "Installing git..."
       sudo apt-get install git
       break ;;
    *)
-      echo "${invalid}";;
+      echo "${invalid}" ;;
 esac
-done
 
 # Install SSH:
 
 echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
 echo "Do you want to install SSH? [Y/n]"
-while true; do
 read instssh
 case $instssh in
    [nN])
-      echo "${ok}";;
+      echo "${ok}"
+      break ;;
    [yY])
       echo "Installing SSH..."
       sudo apt-get install ssh
       break ;;
    *)
-      echo "${invalid}";;
+      echo "${invalid}" ;;
 esac
-done
+
        echo "Creating settings folder..."
        mkdir /1/config
 
