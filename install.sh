@@ -103,6 +103,10 @@ fi
          ipfs
 fi
 
+echo "- Initializing IPFS..."
+ipfs init
+ipfs daemon
+
 # Install git:
 
 echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
