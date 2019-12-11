@@ -141,6 +141,9 @@ case $instssh in
       echo "${invalid}" ;;
 esac
 
+echo "- Installing programs..."
+sudo apt-get install aria2
+
        echo "Creating settings folder..."
        mkdir /1/config
 
