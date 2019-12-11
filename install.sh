@@ -3,7 +3,6 @@
 # load definitions & settings
 source /usr/lib/floflis/config
 # it doesn't works yet. need to do it manually here:
-
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
     i286)   flofarch="286";;
@@ -13,6 +12,9 @@ case "${unameOutM}" in
     arm)    dpkg --print-flofarch | grep -q "arm64" && flofarch="arm64" || flofarch="arm";;
     riscv64) flofarch="riscv64"
 esac
+
+ok="Ok."
+invalid="Please enter a valid input"
 
 cat << "EOF"
 -. .-.   .-. .-.   .-. .-.   .
@@ -58,6 +60,10 @@ then
          sudo cp -f ./include/antiX/cli-installer /usr/local/bin/
          sudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
+
+# Install jq:
+
+   echo "Installing jq..."
        
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/jq/jq-linux32.tar.gz
@@ -74,6 +80,64 @@ fi
          jq
 fi
 
+# Install IPFS:
+
+   echo "Installing IPFS..."
+
+      if [ "$flofarch" = "386" ]; then
+         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+         sudo mv go-ipfs/ipfs /usr/bin
+         sudo rm -rf go-ipfs
+         chmod +x /usr/bin/ipfs
+         echo "Testing if IPFS works:"
+         ipfs
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-amd64.tar.gz
+         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+         sudo mv go-ipfs/ipfs /usr/bin
+         sudo rm -rf go-ipfs
+         chmod +x /usr/bin/ipfs
+         echo "Testing if IPFS works:"
+         ipfs
+fi
+
+# Install git:
+
+echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
+echo "Do you want to install git? [Y/n]"
+while true; do
+read insgit
+case $insgit in
+   [nN])
+      echo "${ok}";;
+   [yY])
+      echo "Installing git..."
+      sudo apt-get install git
+      break ;;
+   *)
+      echo "${invalid}";;
+esac
+done
+
+# Install SSH:
+
+echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
+echo "Do you want to install SSH? [Y/n]"
+while true; do
+read instssh
+case $instssh in
+   [nN])
+      echo "${ok}";;
+   [yY])
+      echo "Installing SSH..."
+      sudo apt-get install ssh
+      break ;;
+   *)
+      echo "${invalid}";;
+esac
+done
        echo "Creating settings folder..."
        mkdir /1/config
 
