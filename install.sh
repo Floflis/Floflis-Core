@@ -114,7 +114,7 @@ case $insgit in
       break ;;
    [yY])
       echo "Installing git..."
-      sudo apt-get install git
+      sudo apt-get install git -y
       break ;;
    *)
       echo "${invalid}" ;;
@@ -131,7 +131,7 @@ case $instssh in
       break ;;
    [yY])
       echo "Installing SSH..."
-      sudo apt-get install ssh
+      sudo apt-get install ssh -y
       break ;;
    *)
       echo "${invalid}" ;;
