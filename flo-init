@@ -1,2 +1,2 @@
-echo "Initializing IPFS..."
-ipfs daemon
+# echo "Initializing IPFS..."
+# ipfs daemon

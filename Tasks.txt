@@ -1,3 +1,5 @@
+only init IPFS after logged
+
 create SSH key and save it to .ppl profile
 ssh-keygen -t ed25519
 ~/.ssh/id_ed25519.pub
