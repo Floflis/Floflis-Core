@@ -1,12 +1,17 @@
+modules as folders with git and their oppose versions (uses git branches)
+
+update module: rm uneed msgs, update every layer
+updates: use .git folder of every layer
+
 only init IPFS after logged
 
 create SSH key and save it to .ppl profile
 ssh-keygen -t ed25519
 ~/.ssh/id_ed25519.pub
 ==================================================
-cmd to enable/disable floservices
+floflis-central to enable/disable floservices
 ==================================================
-cmd to show profile
+floflis-central to show profile
 +--[ED25519 256]--+
 |   =+.           |
 | .E += . .       |
@@ -20,17 +25,10 @@ cmd to show profile
 +----[SHA256]-----+
 ==================================================
 
-i2pd_2.28.0-1buster1_i386.deb	
-setup_i2pd_v2.28.0.exe	
-jq.exe	
+i2pd_2.28.0-1buster1_i386.deb
 yggdrasil-0.3.9-i386.deb	
-yggdrasil-0.3.9-windows-i386.exe	
-cjdns-installer-0.10-proto20.2.exe	
-jq-linux64.tar.gz	
-jq-linux32.tar.gz	
-jq-osx-amd64.tar.gz
-
-modules as folders
+jq-linux64.tar.gz
+jq-linux32.tar.gz
 
 detect root
 show non effective user
