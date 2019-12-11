@@ -103,6 +103,20 @@ fi
          ipfs
 fi
 
+cat > ~/.config/autostart/IPFS.desktop << ENDOFFILE
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=IPFS
+Comment=
+Exec=ipfs daemon
+StartupNotify=false
+Terminal=false
+Hidden=false
+
+ENDOFFILE
+
 echo "- Initializing IPFS..."
 ipfs init
 ipfs daemon

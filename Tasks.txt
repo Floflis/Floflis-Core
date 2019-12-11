@@ -3,8 +3,6 @@ modules as folders with git and their oppose versions (uses git branches)
 update module: rm uneed msgs, update every layer
 updates: use .git folder of every layer
 
-only init IPFS after logged
-
 create SSH key and save it to .ppl profile
 ssh-keygen -t ed25519
 ~/.ssh/id_ed25519.pub
