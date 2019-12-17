@@ -103,6 +103,12 @@ fi
          ipfs
 fi
 
+sudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
+#!/bin/bash
+
+ipfs daemon
+ENDOFFILE
+
 cat > ~/.config/autostart/IPFS.desktop << ENDOFFILE
 [Desktop Entry]
 Encoding=UTF-8
@@ -110,7 +116,7 @@ Version=0.9.4
 Type=Application
 Name=IPFS
 Comment=
-Exec=ipfs daemon
+Exec=ipfsdaemon
 StartupNotify=false
 Terminal=false
 Hidden=false
