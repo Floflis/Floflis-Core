@@ -117,7 +117,7 @@ Type=Application
 Name=IPFS
 Comment=
 Exec=ipfsdaemon
-StartupNotify=false
+StartupNotify=true
 Terminal=false
 Hidden=false
 
