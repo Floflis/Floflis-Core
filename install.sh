@@ -119,7 +119,7 @@ ENDOFFILE
 
 echo "- Initializing IPFS..."
 ipfs init
-ipfs daemon
+echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
 
 # Install git:
 
