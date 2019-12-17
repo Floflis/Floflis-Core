@@ -146,20 +146,23 @@ esac
 
 # Install SSH:
 
-echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
-echo "Do you want to install SSH? [Y/n]"
-read instssh
-case $instssh in
-   [nN])
-      echo "${ok}"
-      break ;;
-   [yY])
-      echo "Installing SSH..."
-      sudo apt-get install ssh -y
-      break ;;
-   *)
-      echo "${invalid}" ;;
+if [ ! -e /usr/lib/floflis/layers/dna/layers/server ]
+then
+   echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
+   echo "Do you want to install SSH? [Y/n]"
+   read instssh
+   case $instssh in
+      [nN])
+         echo "${ok}"
+         break ;;
+      [yY])
+         echo "Installing SSH..."
+         sudo apt-get install ssh -y
+         break ;;
+      *)
+         echo "${invalid}" ;;
 esac
+fi
 
 echo "- Installing programs..."
 sudo apt-get install aria2
