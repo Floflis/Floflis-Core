@@ -109,6 +109,8 @@ sudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
 ipfs daemon
 ENDOFFILE
 
+sudo chmod +x /usr/bin/ipfsdaemon
+
 cat > ~/.config/autostart/IPFS.desktop << ENDOFFILE
 [Desktop Entry]
 Encoding=UTF-8
