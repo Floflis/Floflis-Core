@@ -13,6 +13,33 @@ case "${unameOutM}" in
     riscv64) flofarch="riscv64"
 esac
 
+# would detect fakeroot 
+#for path in ${LD_LIBRARY_PATH//:/ }; do
+#   if [[ "$path" == *libfakeroot ]]
+#      then
+#         echo "You're using fakeroot. Floflis won't work."
+#         exit
+#fi
+#done
+
+is_root=false
+
+if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
+   then
+      is_root=false
+   else
+      is_root=true
+fi
+
+may$maysudo=""
+
+if [ "$is_root" = "false" ]
+   then
+      may$maysudo=""
+   else
+      may$maysudo="$may$maysudo"
+fi
+
 ok="Ok."
 invalid="Please enter a valid input"
 
@@ -39,9 +66,9 @@ then
    echo "- Upgrading to Floflis Core..."
    echo "- Creating tree folder above root..."
    echo "- Creating /1 (tree) folder..."
-   sudo mkdir /1
+   $maysudo mkdir /1
    echo "- Setting permissions on /1 (tree) folder..."
-   sudo chmod -R a+rwX /1
+   $maysudo chmod -R a+rwX /1
 
    echo "Testing write permissions on tree folder..."
    echo "If it takes more than 30 seconds, please reboot your device and try again."
@@ -57,8 +84,8 @@ then
       
       if [ -e /usr/local/bin/*antiX* ]; then
          echo "- This is a antiX-based OS. Updating files..."
-         sudo cp -f ./include/antiX/cli-installer /usr/local/bin/
-         sudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
+         $maysudo cp -f ./include/antiX/cli-installer /usr/local/bin/
+         $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
 
 # Install jq:
@@ -67,14 +94,14 @@ fi
        
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/jq/jq-linux32.tar.gz
-         sudo mv jq /usr/bin
+         $maysudo mv jq /usr/bin
          chmod +x /usr/bin/jq
          echo "Testing if jq works:"
          jq
 fi
       if [ "$flofarch" = "amd64" ]; then
          tar -xzf include/jq/jq-linux64.tar.gz
-         sudo mv jq /usr/bin
+         $maysudo mv jq /usr/bin
          chmod +x /usr/bin/jq
          echo "Testing if jq works:"
          jq
@@ -87,8 +114,8 @@ fi
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
          rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-         sudo mv go-ipfs/ipfs /usr/bin
-         sudo rm -rf go-ipfs
+         $maysudo mv go-ipfs/ipfs /usr/bin
+         $maysudo rm -rf go-ipfs
          chmod +x /usr/bin/ipfs
          echo "Testing if IPFS works:"
          ipfs
@@ -96,20 +123,20 @@ fi
       if [ "$flofarch" = "amd64" ]; then
          tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-amd64.tar.gz
          rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-         sudo mv go-ipfs/ipfs /usr/bin
-         sudo rm -rf go-ipfs
+         $maysudo mv go-ipfs/ipfs /usr/bin
+         $maysudo rm -rf go-ipfs
          chmod +x /usr/bin/ipfs
          echo "Testing if IPFS works:"
          ipfs
 fi
 
-sudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
+$maysudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
 #!/bin/bash
 
 ipfs daemon
 ENDOFFILE
 
-sudo chmod +x /usr/bin/ipfsdaemon
+$maysudo chmod +x /usr/bin/ipfsdaemon
 
 cat > ~/.config/autostart/IPFS.desktop << ENDOFFILE
 [Desktop Entry]
@@ -140,7 +167,7 @@ case $insgit in
       break ;;
    [yY])
       echo "Installing git..."
-      sudo apt-get install git -y
+      $maysudo apt-get install git -y
       break ;;
    *)
       echo "${invalid}" ;;
@@ -159,7 +186,7 @@ then
          break ;;
       [yY])
          echo "Installing SSH..."
-         sudo apt-get install ssh -y
+         $maysudo apt-get install ssh -y
          break ;;
       *)
          echo "${invalid}" ;;
@@ -167,29 +194,29 @@ esac
 fi
 
 echo "- Installing programs..."
-sudo apt-get install aria2
+$maysudo apt-get install aria2
 
        echo "Creating settings folder..."
        mkdir /1/config
 
        echo "Getting and storing username  (not available yet)..."
-       #sudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > /1/config/dat.json << ENDOFFILE
        #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - $whoami","user":" $whoami"}
        #ENDOFFILE
 
-       #sudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
 #       echo "$()" > /1/config/dat.json
 
-       #sudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #","user":" 
 #ENDOFFILE
 
        #$(whoami) >> /1/config/dat.json
 
-       #sudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #"}
 #ENDOFFILE
 
@@ -208,15 +235,15 @@ fi
    # Creating Apps folder... /1/Apps
    # Installing apps...
    echo "Creating folder for classic apps (/programs)..."
-   sudo mkdir /1/programs
+   $maysudo mkdir /1/programs
    echo "Creating /libraries..."
-   sudo mkdir /1/libraries
+   $maysudo mkdir /1/libraries
    echo "Creating /libraries/replic..."
-   sudo mkdir /1/libraries/replic
+   $maysudo mkdir /1/libraries/replic
    echo "- Setting permissions on /libraries/replic..."
-   sudo chmod -R a+rwX /1/libraries/replic/
+   $maysudo chmod -R a+rwX /1/libraries/replic/
    echo "- Creating root folder inside tree..."
-   sudo ln -s / /1/Z-root
+   $maysudo ln -s / /1/Z-root
    # Installing classic apps...
    # chmod cj
    # Creating folders for games and HTML5 files
@@ -226,18 +253,18 @@ fi
    # /1/html5
    # Installing HTML5 files...
    echo "Installing /1/src"
-   sudo mkdir /1/src
+   $maysudo mkdir /1/src
    
    echo "- Installing Floflis Core as init program..."
-   sudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && sudo rm -f /usr/lib/floflis/layers/core/flo-init
-   sudo chmod 755 /etc/init.d/flo-init && sudo update-rc.d flo-init defaults
+   $maysudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/core/flo-init
+   $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
 
    echo "- Installing Floflis Central..."
-   sudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
+   $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
 
    echo "- Cleanning install, saving settings..."
-   sudo rm /usr/lib/floflis/layers/core/install.sh
-   sudo sed -i 's/core/soil/g' /usr/lib/floflis/config && sudo sed -i 's/dna/core/g' /usr/lib/floflis/config
+   $maysudo rm /usr/lib/floflis/layers/core/install.sh
+   $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
    echo "(✓) Floflis DNA has been upgraded to Floflis Core."
 else
    echo "(X) Floflis DNA isn't found. Please install Floflis DNA before installing Floflis Core."
