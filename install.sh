@@ -146,6 +146,28 @@ case $insgit in
       echo "${invalid}" ;;
 esac
 
+# Install git-LFS:
+
+echo "git-LFS is a need for supporting large file storage in git. Only install it if you're a developer in need of it."
+echo "Do you want to install git-LFS? [Y/n]"
+read insgit-lfs
+case $insgit-lfs in
+   [nN])
+      echo "${ok}"
+      break ;;
+   [yY])
+      echo "Installing git-LFS..."
+            if [ "$flofarch" = "386" ]; then
+         sudo gdebi include/git-LFS/git-lfs_2.9.2_i386.deb
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         sudo gdebi include/git-LFS/git-lfs_2.9.2_amd64.deb
+fi
+      break ;;
+   *)
+      echo "${invalid}" ;;
+esac
+
 # Install SSH:
 
 if [ ! -e /usr/lib/floflis/layers/dna/layers/server ]
