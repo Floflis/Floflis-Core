@@ -156,6 +156,9 @@ echo "- Initializing IPFS..."
 ipfs init
 echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
 
+echo "Updating apt..."
+$maysudo apt-get update -y
+
 # Install git:
 
 echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
