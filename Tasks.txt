@@ -1,3 +1,5 @@
+detect if distro is based debian, and if not, don't use apt (also in next layers). will rely on FloflisFromScratch. Useful for TinyCore/BSD and declipse
+
 modules as folders with git and their oppose versions (uses git branches)
 
 update module: rm uneed msgs, update every layer
@@ -67,7 +69,6 @@ sudo apt-get update && sudo apt-get install gdebi
 
 install elinks
 install curl
-install git
 install ceni
 
 create /1/config/dat.json containing username (append data to file with variables)
