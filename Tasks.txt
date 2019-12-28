@@ -1,9 +1,9 @@
-detect if distro is based debian, and if not, don't use apt (also in next layers). will rely on FloflisFromScratch. Useful for TinyCore/BSD and declipse
-
-modules as folders with git and their oppose versions (uses git branches)
+/home/mesquita/Downloads/xz-utils/
 
 update module: rm uneed msgs, update every layer
 updates: use .git folder of every layer
+
+modules as folders with git and their oppose versions (uses git branches)
 
 create SSH key and save it to .ppl profile
 ssh-keygen -t ed25519
@@ -36,13 +36,8 @@ show non effective user
 
 make updates module work
 
-recipes
-/home/mesquita/Desktop/Floflis Recipes/
-
 test if cmd/program is already installed
 https://stackoverflow.com/questions/7522712/how-to-check-if-command-exists-in-a-shell-script/39983421
-
-/home/mesquita/Downloads/xz-utils/
 
 if MacOS, tell its support is alpha
 install jq
@@ -61,14 +56,11 @@ if flofmach Mac and flofarch amd64:
 chmod +x ./jq-osx-amd64
 ./jq
 
+FloflisFromScratch using deb:
 /var/cache/apt/archives/
 sudo dpkg -i /path/to/deb/file
 sudo apt-get install -f
 
-sudo apt-get update && sudo apt-get install gdebi
-
-install elinks
-install curl
-install ceni
+detect if distro is based debian, and if not, don't use apt (also in next layers). will rely on FloflisFromScratch. Useful for TinyCore/BSD and declipse
 
 create /1/config/dat.json containing username (append data to file with variables)
