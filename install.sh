@@ -148,11 +148,13 @@ Type=Application
 Name=IPFS
 Comment=
 Exec=ipfsdaemon
+Icon=ipfs
 StartupNotify=true
 Terminal=false
 Hidden=false
 
 ENDOFFILE
+$maysudo chmod -R a+rwX ~/.config/autostart/IPFS.desktop
 
 echo "- Initializing IPFS..."
 ipfs init
