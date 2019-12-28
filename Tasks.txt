@@ -1,5 +1,3 @@
-/home/mesquita/Downloads/xz-utils/
-
 update module: rm uneed msgs, update every layer
 updates: use .git folder of every layer
 
