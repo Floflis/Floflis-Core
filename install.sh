@@ -163,6 +163,9 @@ echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or
 echo "Updating apt..."
 $maysudo apt-get update -y
 
+echo "- Installing programs..."
+$maysudo apt-get install aria2
+
 # Install git:
 
 echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
@@ -200,8 +203,8 @@ then
 esac
 fi
 
-echo "- Installing programs..."
-$maysudo apt-get install aria2
+echo "- Upgrading distro..."
+$maysudo apt-get dist-upgrade && $maysudo apt-get clean
 
        echo "Creating settings folder..."
        mkdir /1/config
