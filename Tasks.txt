@@ -1,6 +1,8 @@
 update module: rm uneed msgs, update every layer
 updates: use .git folder of every layer
 
+see if yet in newer antix: cli-cc internet settings doesn't shows all items (also floflis' pppconfig)
+
 modules as folders with git and their oppose versions (uses git branches)
 
 create SSH key and save it to .ppl profile
