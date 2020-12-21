@@ -271,6 +271,7 @@ fi
 
    echo "- Installing Floflis Central..."
    $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
+   $maysudo chmod 755 /usr/bin/floflis-central
 
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/core/install.sh
