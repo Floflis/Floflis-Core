@@ -1,3 +1,13 @@
+List folders in /home, and ask user to type its user. Check if wrong, then ask again before registering username.
+replace ~ to registered username.
+if not found, create {user}/.config/autostart/
+
+Tell updates cant work because git isnt installed
+
+Fully follow OPI License while its not updated
+
+DNA: tell the installer need root to perform
+
 update module: rm uneed msgs, update every layer
 updates: use .git folder of every layer
 
