@@ -11,11 +11,19 @@ else
     if [ ! -f $FLAG ]
        then
           #Put here your initialization cmds
-          echo "This is the first boot"
+          echo "This is the first boot."
+          cd /home
+          for D in `find . -mindepth 1 -maxdepth 1 -type d`
+          do
+             mkdir .config
+             mkdir .config/autostart
+             cd
+done
           #the next line creates an empty file so it won't run the next boot
           touch $FLAG
        else
           echo "No need to run Floflis' first boot script."
+          #task: remove this script from init.d
 fi
   else
     echo "live OS running from RAM. Floflis' firstboot won't run."
