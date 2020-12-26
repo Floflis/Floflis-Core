@@ -1,0 +1,5 @@
+# runs the Floflis post-install script
+ubiquity ubiquity/success_command string \ 
+   cp /cdrom/postinstall /target/root/; \ 
+   chmod 0700 /target/root/postinstall; \ 
+   in-target /root/postinstall; \

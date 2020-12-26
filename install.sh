@@ -203,18 +203,20 @@ then
 esac
 fi
 
-echo "- Upgrading distro..."
-$maysudo apt-get dist-upgrade && $maysudo apt-get clean
+# not safe to upgrade distro, yet
+#echo "- Upgrading distro..."
+#$maysudo apt-get dist-upgrade && $maysudo apt-get clean
 
        echo "Creating settings folder..."
        mkdir /1/config
 
-       echo "Getting and storing username  (not available yet)..."
-       #$maysudo cat > /1/config/dat.json << ENDOFFILE
-       #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - $whoami","user":" $whoami"}
-       #ENDOFFILE
+       echo "Getting and storing username..."
+       flouser=$(echo ~ | awk -F/ '{print $NF}')
+       $maysudo cat > /1/config/dat.json << ENDOFFILE
+       {"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - ${flouser}","user":" ${flouser}"}
+ENDOFFILE
 
-       #$maysudo cat > /1/config/dat.json << ENDOFFILE
+#$maysudo cat > /1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
@@ -265,9 +267,18 @@ fi
    echo "Installing /1/src"
    $maysudo mkdir /1/src
    
+   #task: run this cmd only if detecting ubuntu+chroot
+   #removed. is this cmd an requirement? for now, lets experiment with an init script.
+   #$maysudo echo "$(cat /usr/lib/floflis/layers/core/preseed)" >> /preseed/ubuntu.seed && $maysudo rm -f /usr/lib/floflis/layers/core/preseed
+   #$maysudo cp -f /usr/lib/floflis/layers/core/postinstall / && $maysudo rm -f /usr/lib/floflis/layers/core/postinstall
+   
    echo "- Installing Floflis Core as init program..."
    $maysudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/core/flo-init
    $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
+   
+   echo "- Installing Floflis' first boot script..."
+   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot / && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
+   $maysudo chmod 755 /etc/init.d/firstboot && $maysudo update-rc.d firstboot defaults
 
    echo "- Installing Floflis Central..."
    $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
