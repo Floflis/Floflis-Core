@@ -15,10 +15,11 @@ else
           cd /home
           for D in `find . -mindepth 1 -maxdepth 1 -type d`
           do
+             cd ${D}
              mkdir .config
              mkdir .config/autostart
-             cd
 done
+          cd
           #the next line creates an empty file so it won't run the next boot
           touch $FLAG
        else
