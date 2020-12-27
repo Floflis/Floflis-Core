@@ -231,7 +231,7 @@ fi
    $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
    
    echo "- Installing Floflis' first boot script..."
-   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot / && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
+   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
    $maysudo chmod 755 /etc/init.d/firstboot && $maysudo update-rc.d firstboot defaults
 
    echo "- Installing Floflis Central..."
