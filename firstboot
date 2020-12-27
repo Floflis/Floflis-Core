@@ -99,15 +99,16 @@ ENDOFFILE
              cd .config/autostart
              cat > firstlogon.desktop << ENDOFFILE
 [Desktop Entry]
-Encoding=UTF-8
-Version=0.9.4
-Type=Application
+Version=1.0
 Name=FirstLogon
 Comment=
-Exec=gnome-terminal --tab --title="Welcome to Floflis!" --command="sh ./firstlogon.sh"
-Icon=ipfs
+Exec=gnome-terminal --tab --title="Welcome to Floflis!" -- "sh ./firstlogon.sh"
+Encoding=UTF-8
+Type=Application
+Categories=Application;
+Icon=utilities-terminal
 StartupNotify=true
-Terminal=false
+Terminal=true
 Hidden=false
 
 ENDOFFILE
