@@ -45,7 +45,7 @@ fi
 ok="Ok."
 invalid="Please enter a valid input"
 
-cat << "EOF"
+cat << "EOF" 
 -. .-.   .-. .-.   .-. .-.   .
   \   \ /   \   \ /   \   \ /
  / \   \   / \   \   / \   \
@@ -140,26 +140,6 @@ ENDOFFILE
 
 $maysudo chmod +x /usr/bin/ipfsdaemon
 
-cat > ~/.config/autostart/IPFS.desktop << ENDOFFILE
-[Desktop Entry]
-Encoding=UTF-8
-Version=0.9.4
-Type=Application
-Name=IPFS
-Comment=
-Exec=ipfsdaemon
-Icon=ipfs
-StartupNotify=true
-Terminal=false
-Hidden=false
-
-ENDOFFILE
-$maysudo chmod -R a+rwX ~/.config/autostart/IPFS.desktop
-
-echo "- Initializing IPFS..."
-ipfs init
-echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
-
 echo "Updating apt..."
 $maysudo apt-get update -y
 
@@ -183,38 +163,12 @@ case $insgit in
       echo "${invalid}" ;;
 esac
 
-# Install SSH:
-
-if [ ! -e /usr/lib/floflis/layers/dna/layers/server ]
-then
-   echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
-   echo "Do you want to install SSH? [Y/n]"
-   read instssh
-   case $instssh in
-      [nN])
-         echo "${ok}"
-         break ;;
-      [yY])
-         echo "Installing SSH..."
-         $maysudo apt-get install ssh -y
-         break ;;
-      *)
-         echo "${invalid}" ;;
-esac
-fi
-
 # not safe to upgrade distro, yet
 #echo "- Upgrading distro..."
 #$maysudo apt-get dist-upgrade && $maysudo apt-get clean
 
        echo "Creating settings folder..."
        mkdir /1/config
-
-       echo "Getting and storing username..."
-       flouser=$(echo ~ | awk -F/ '{print $NF}')
-       $maysudo cat > /1/config/dat.json << ENDOFFILE
-       {"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - ${flouser}","user":" ${flouser}"}
-ENDOFFILE
 
 #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 

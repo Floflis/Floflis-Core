@@ -16,8 +16,102 @@ else
           for D in `find . -mindepth 1 -maxdepth 1 -type d`
           do
              cd ${D}
+             cat > firstlogon.sh << ENDOFFILE
+#!/bin/bash
+cat << "EOF" 
+-. .-.   .-. .-.   .-. .-.   .
+  \   \ /   \   \ /   \   \ /
+ / \   \   / \   \   / \   \
+~   `-~ `-`   `-~ `-`   `-~ `-
+  _            _           
+ |_  |   _   _|_  |  o   _ 
+ |   |  (_)   |   |  |  _> 
+                           
+  ___               _            _   _             
+ |_ _|  _ _    ___ | |_   __ _  | | | |  ___   _ _ 
+  | |  | ' \  (_-< |  _| / _` | | | | | / -_) | '_|
+ |___| |_||_| /__/  \__| \__,_| |_| |_| \___| |_|  
+
+                  Welcome to Floflis!
+EOF
+# Core>
+   if [ -e /usr/lib/floflis/layers/dna/floflis ]
+   then
+      if [ -e /usr/lib/floflis/layers/dna/layers/core ]
+      then
+                  echo "Getting and storing username..."
+         flouser=$(echo ~ | awk -F/ '{print $NF}')
+         $maysudo cat > /1/config/dat.json << "EOF"
+       {"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - ${flouser}","user":" ${flouser}"}
+EOF
+         $maysudo sed -i 's/user="blank"/user="${flouser}"/g' /usr/lib/floflis/config
+fi
+fi
+# <Core
+
+cat > ~/.config/autostart/IPFS.desktop << "EOF"
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=IPFS
+Comment=
+Exec=ipfsdaemon
+Icon=ipfs
+StartupNotify=true
+Terminal=false
+Hidden=false
+
+EOF
+$maysudo chmod -R a+rwX ~/.config/autostart/IPFS.desktop
+
+echo "- Initializing IPFS..."
+ipfs init
+echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
+
+# Install SSH:
+
+if [ ! -e /usr/lib/floflis/layers/dna/layers/server ]
+then
+   echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
+   echo "Do you want to install SSH? [Y/n]"
+   read instssh
+   case $instssh in
+      [nN])
+         echo "${ok}"
+         break ;;
+      [yY])
+         echo "Installing SSH..."
+         $maysudo apt-get install ssh -y
+         break ;;
+      *)
+         echo "${invalid}" ;;
+esac
+fi
+
+rm -rf firstlogon.sh
+rm -rf ${flouser}/.config/autostart/firstlogon.desktop
+echo "(✓) Floflis has been successfully installed! You can now use it :)"
+
+ENDOFFILE
              mkdir .config
              mkdir .config/autostart
+             cd .config/autostart
+             cat > firstlogon.desktop << ENDOFFILE
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=FirstLogon
+Comment=
+Exec=gnome-terminal --tab --title="Welcome to Floflis!" --command="sh ./firstlogon.sh"
+Icon=ipfs
+StartupNotify=true
+Terminal=false
+Hidden=false
+
+ENDOFFILE
+             $maysudo chmod -R a+rwX firstlogon.desktop
 done
           cd
           #the next line creates an empty file so it won't run the next boot
