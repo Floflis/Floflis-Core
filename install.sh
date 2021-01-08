@@ -141,6 +141,7 @@ ENDOFFILE
 $maysudo chmod +x /usr/bin/ipfsdaemon
 
 echo "Updating apt..."
+$maysudo add-apt-repository universe -y
 $maysudo apt-get update -y
 
 echo "- Installing programs..."
@@ -163,8 +164,11 @@ case $insgit in
       echo "${invalid}" ;;
 esac
 
+echo "- Updating your Linux distro..."
+$maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
+
 # not safe to upgrade distro, yet
-#echo "- Upgrading distro..."
+#echo "- Upgrading your Linux distro..."
 #$maysudo apt-get dist-upgrade && $maysudo apt-get clean
 
        echo "Creating settings folder..."
@@ -228,11 +232,19 @@ fi
    
    echo "- Installing Floflis Core as init program..."
    $maysudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/core/flo-init
-   $maysudo chmod 755 /etc/init.d/flo-init && $maysudo update-rc.d flo-init defaults
+   $maysudo chmod +x /etc/init.d/flo-init
+   $maysudo update-rc.d flo-init defaults
+   $maysudo update-rc.d flo-init enable
+   $maysudo systemctl enable flo-init
+   $maysudo systemd enable flo-init
    
-   echo "- Installing Floflis' first boot script..."
-   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
-   $maysudo chmod 755 /etc/init.d/firstboot && $maysudo update-rc.d firstboot defaults
+   #echo "- Installing Floflis' first boot script..."
+   #$maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
+   #$maysudo chmod +x /etc/init.d/firstboot
+   #$maysudo update-rc.d firstboot defaults
+   #$maysudo update-rc.d firstboot enable
+   #$maysudo systemctl enable firstboot
+   #$maysudo systemd enable firstboot
 
    echo "- Installing Floflis Central..."
    $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
