@@ -1,3 +1,5 @@
+Prevent new users into getting into the same firstlogon.desktop
+
 List folders in /home, and ask user to type its user. Check if wrong, then ask again before registering username.
 replace ~ to registered username.
 if not found, create {user}/.config/autostart/
