@@ -1,4 +1,12 @@
-#!/bin/bash
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: firstboot
+# Required-Start:    $local_fs $syslog $remote_fs dbus
+# Required-Stop:     $local_fs $syslog $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start firstboot script
+### END INIT INFO
 
 if cat /proc/1/cgroup | tail -1 | grep -q "container"; then
   echo "linux container. Floflis' firstboot won't run."
@@ -16,103 +24,44 @@ else
           for D in `find . -mindepth 1 -maxdepth 1 -type d`
           do
              cd ${D}
-             cat > firstlogon.sh << ENDOFFILE
-#!/bin/bash
-cat << "EOF" 
--. .-.   .-. .-.   .-. .-.   .
-  \   \ /   \   \ /   \   \ /
- / \   \   / \   \   / \   \
-~   `-~ `-`   `-~ `-`   `-~ `-
-  _            _           
- |_  |   _   _|_  |  o   _ 
- |   |  (_)   |   |  |  _> 
-                           
-  ___               _            _   _             
- |_ _|  _ _    ___ | |_   __ _  | | | |  ___   _ _ 
-  | |  | ' \  (_-< |  _| / _` | | | | | / -_) | '_|
- |___| |_||_| /__/  \__| \__,_| |_| |_| \___| |_|  
-
-                  Welcome to Floflis!
-EOF
-# Core>
-   if [ -e /usr/lib/floflis/layers/dna/floflis ]
-   then
-      if [ -e /usr/lib/floflis/layers/dna/layers/core ]
-      then
-                  echo "Getting and storing username..."
-         flouser=$(echo ~ | awk -F/ '{print $NF}')
-         $maysudo cat > /1/config/dat.json << "EOF"
-       {"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - ${flouser}","user":" ${flouser}"}
-EOF
-         $maysudo sed -i 's/user="blank"/user="${flouser}"/g' /usr/lib/floflis/config
-fi
-fi
-# <Core
-
-cat > ~/.config/autostart/IPFS.desktop << "EOF"
-[Desktop Entry]
-Encoding=UTF-8
-Version=0.9.4
-Type=Application
-Name=IPFS
-Comment=
-Exec=ipfsdaemon
-Icon=ipfs
-StartupNotify=true
-Terminal=false
-Hidden=false
-
-EOF
-$maysudo chmod -R a+rwX ~/.config/autostart/IPFS.desktop
-
-echo "- Initializing IPFS..."
-ipfs init
-echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
-
-# Install SSH:
-
-if [ ! -e /usr/lib/floflis/layers/dna/layers/server ]
-then
-   echo "Don't install SSH if don't know how bad systemd is or if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
-   echo "Do you want to install SSH? [Y/n]"
-   read instssh
-   case $instssh in
-      [nN])
-         echo "${ok}"
-         break ;;
-      [yY])
-         echo "Installing SSH..."
-         $maysudo apt-get install ssh -y
-         break ;;
-      *)
-         echo "${invalid}" ;;
-esac
-fi
-
-rm -rf firstlogon.sh
-rm -rf ${flouser}/.config/autostart/firstlogon.desktop
-echo "(✓) Floflis has been successfully installed! You can now use it :)"
-
-ENDOFFILE
+             sudo mv /usr/lib/floflis/layers/core/firstlogon.sh /home
+             sudo mv /usr/lib/floflis/layers/core/firstlogonroot.sh /home
+             sudo chmod +x /home/firstlogon.sh
+             sudo chmod +x /home/firstlogonroot.sh
              mkdir .config
              mkdir .config/autostart
              cd .config/autostart
-             cat > firstlogon.desktop << ENDOFFILE
+             cat > firstlogon.sh << ENDOFFILE
 [Desktop Entry]
-Version=1.0
-Name=FirstLogon
-Comment=
-Exec=gnome-terminal --tab --title="Welcome to Floflis!" -- "sh ./firstlogon.sh"
-Encoding=UTF-8
 Type=Application
-Categories=Application;
+Exec=gnome-terminal --tab --title="Welcome to Floflis!" -- /bin/sh -c 'cd /home; sudo sh ./firstlogon.sh; exec bash'
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=FirstLogon
+Name=FirstLogon
+Comment[en_US]=
+Comment=
 Icon=utilities-terminal
 StartupNotify=true
-Terminal=true
-Hidden=false
+Terminal=false
 
 ENDOFFILE
-             $maysudo chmod -R a+rwX firstlogon.desktop
+             sudo chmod -R a+rwX .config/autostart && sudo chown ${D//./}:${D//./} .config/autostart
+             sudo chown ${D//./}:${D//./} .local/share/gvfs-metadata/home*
+             sudo chmod +x firstlogon.sh
+             sudo chown ${D//./}:${D//./} .config/autostart/firstlogon.sh
+             cd .config/autostart
+             sudo mv firstlogon.sh firstlogon.desktop
+             sudo chown ${D//./}:${D//./} firstlogon.desktop
+             cd ..
+             cd ..
+             echo "- Cleanning install..."
+             sudo rm -rf .config/autostart/firstlogon.sh
+             sudo rm -rf /usr/lib/floflis/layers/core/firstlogon.sh
+             sudo rm -rf /usr/lib/floflis/layers/core/firstlogonroot.sh
+             #sudo rm -rf /etc/init.d/firstboot
+             sudo chmod -R a+rwX ${D} && sudo chown ${D//./}:${D//./} ${D}
 done
           cd
           #the next line creates an empty file so it won't run the next boot
