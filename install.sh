@@ -167,9 +167,11 @@ esac
 echo "- Updating your Linux distro..."
 $maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
 
-# not safe to upgrade distro, yet
-#echo "- Upgrading your Linux distro..."
-#$maysudo apt-get dist-upgrade && $maysudo apt-get clean
+echo "- Upgrading your Linux distro..."
+$maysudo apt-get dist-upgrade && $maysudo apt-get clean
+
+echo "- Installing the broken packages, efibootmgr and grub..."
+$maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 
        echo "Creating settings folder..."
        mkdir /1/config
