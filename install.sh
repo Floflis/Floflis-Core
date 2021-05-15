@@ -132,6 +132,12 @@ fi
          ipfs
 fi
 
+#- This will add about 46 MB of files:
+#- If your device have enough space and you want to update it using Web3Updater, it'll need IPFS.
+#- Large files like IPFS aren't suitable to an core device such as a router.
+#- Want to install IPFS, an P2P decentralized file network (evolution of Torrent)?
+#- task: if Floflis ISO/Cubic, automatically install IPFS
+
 $maysudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
 #!/bin/bash
 
@@ -139,6 +145,33 @@ ipfs daemon
 ENDOFFILE
 
 $maysudo chmod +x /usr/bin/ipfsdaemon
+
+# Install ethereal:
+
+   echo "Installing ethereal..."
+
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+      if [ "$flofarch" = "amd64" ]; then
+         tar -xzf include/ethereal/ethereal-2.6.0-linux-amd64.tar.gz
+         $maysudo mv include/ethereal/ethereal /usr/bin
+         chmod +x /usr/bin/ethereal
+         echo "Testing if ethereal works:"
+         ethereal
+fi
+
+#- This will add about 39.8 MB of files:
+#- If your device have enough space and you want to update it using Web3Updater, it'll need ethereal.
+#- Large files like ethereal aren't suitable to an core device such as a router.
+#- Want to install ethereal, to use Ethereum and ENS?
+#- task: if Floflis ISO/Cubic, automatically install ethereal
 
 echo "Updating apt..."
 $maysudo add-apt-repository universe -y
@@ -163,6 +196,8 @@ case $insgit in
    *)
       echo "${invalid}" ;;
 esac
+
+#- task: if Floflis ISO/Cubic, automatically install git/git-lfs
 
 echo "- Updating your Linux distro..."
 $maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
