@@ -161,7 +161,7 @@ $maysudo chmod +x /usr/bin/ipfsdaemon
 #fi
       if [ "$flofarch" = "amd64" ]; then
          tar -xzf include/ethereal/ethereal-2.6.0-linux-amd64.tar.gz
-         $maysudo mv include/ethereal/ethereal /usr/bin
+         $maysudo mv ethereal /usr/bin
          chmod +x /usr/bin/ethereal
          echo "Testing if ethereal works:"
          ethereal
