@@ -146,6 +146,27 @@ ENDOFFILE
 
 $maysudo chmod +x /usr/bin/ipfsdaemon
 
+# Install ipget:
+
+   echo "Installing ipget..."
+
+      if [ "$flofarch" = "386" ]; then
+         tar -xzf include/ipget/ipget_v0.6.0_linux-386.tar.gz
+         $maysudo mv ipget/ipget /usr/bin
+         $maysudo rm -rf ipget
+         chmod +x /usr/bin/ipget
+         echo "Testing if ipget works:"
+         ipget
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         tar -xzf include/ipget/ipget_v0.6.0_linux-amd64.tar.gz
+         $maysudo mv ipget/ipget /usr/bin
+         $maysudo rm -rf ipget
+         chmod +x /usr/bin/ipget
+         echo "Testing if ipget works:"
+         ipget
+fi
+
 # Install ethereal:
 
    echo "Installing ethereal..."
