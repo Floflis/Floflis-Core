@@ -114,7 +114,7 @@ fi
    echo "Installing IPFS..."
 
       if [ "$flofarch" = "386" ]; then
-         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+         tar -xzf include/IPFS/go-ipfs_v0.9.0-rc1_linux-386.tar.gz
          rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
          $maysudo mv go-ipfs/ipfs /usr/bin
          $maysudo rm -rf go-ipfs
@@ -123,7 +123,7 @@ fi
          ipfs
 fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-amd64.tar.gz
+         tar -xzf include/IPFS/go-ipfs_v0.9.0-rc1_linux-amd64.tar.gz
          rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
          $maysudo mv go-ipfs/ipfs /usr/bin
          $maysudo rm -rf go-ipfs
