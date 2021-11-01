@@ -220,14 +220,14 @@ esac
 
 #- task: if Floflis ISO/Cubic, automatically install git/git-lfs
 
-echo "- Updating your Linux distro..."
-$maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
+#echo "- Updating your Linux distro..."
+#$maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
 
-echo "- Upgrading your Linux distro..."
-$maysudo apt-get dist-upgrade && $maysudo apt-get clean
+#echo "- Upgrading your Linux distro..."
+#$maysudo apt-get dist-upgrade && $maysudo apt-get clean
 
-echo "- Updating your Linux distro (again)..."
-$maysudo apt-get update && $maysudo apt-get upgrade
+#echo "- Updating your Linux distro (again)..."
+#$maysudo apt-get update && $maysudo apt-get upgrade
 
 echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
