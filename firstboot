@@ -16,25 +16,26 @@ else
   if grep -q "$fs" /proc/partitions; then
     echo "regular linux install. Floflis' firstboot will proceed."
     FLAG="/var/log/firstboot.log"
-    if [ ! -f $FLAG ]
+    if [ ! -f $FLAG ] # if the flag hasn't been placed, this is the first boot
        then
           #Put here your initialization cmds
           echo "This is the first boot."
+          sudo mv /usr/lib/floflis/layers/core/firstlogon.sh /home
+          sudo mv /usr/lib/floflis/layers/core/firstlogonroot.sh /home
+          sudo chmod +x /home/firstlogon.sh
+          sudo chmod +x /home/firstlogonroot.sh
           cd /home
           for D in `find . -mindepth 1 -maxdepth 1 -type d`
           do
+             pure=$(echo "${D}" | tr -d "/" | tr -d ".")
              cd ${D}
-             sudo mv /usr/lib/floflis/layers/core/firstlogon.sh /home
-             sudo mv /usr/lib/floflis/layers/core/firstlogonroot.sh /home
-             sudo chmod +x /home/firstlogon.sh
-             sudo chmod +x /home/firstlogonroot.sh
              mkdir .config
              mkdir .config/autostart
-             cd .config/autostart
-             cat > firstlogon.sh << ENDOFFILE
+#             cd .config/autostart
+             cat > /home/$pure/.config/autostart/firstlogon.sh << ENDOFFILE
 [Desktop Entry]
 Type=Application
-Exec=gnome-terminal --tab --title="Welcome to Floflis!" -- /bin/sh -c 'cd /home; sudo sh ./firstlogon.sh; exec bash'
+Exec=gnome-terminal --tab --title="Welcome to Floflis! 👭" -- /bin/sh -c 'cd /home; sudo sh ./firstlogon.sh; exec bash'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
@@ -47,21 +48,19 @@ StartupNotify=true
 Terminal=false
 
 ENDOFFILE
-             sudo chmod -R a+rwX .config/autostart && sudo chown ${D//./}:${D//./} .config/autostart
-             sudo chown ${D//./}:${D//./} .local/share/gvfs-metadata/home*
-             sudo chmod +x firstlogon.sh
-             sudo chown ${D//./}:${D//./} .config/autostart/firstlogon.sh
-             cd .config/autostart
-             sudo mv firstlogon.sh firstlogon.desktop
-             sudo chown ${D//./}:${D//./} firstlogon.desktop
-             cd ..
-             cd ..
+             sudo chmod -R a+rwX /home/$pure/.config/autostart && sudo chown $pure:$pure /home/$pure/.config/autostart
+             sudo chown $pure:$pure /home/$pure/.local/share/gvfs-metadata/home*
+             sudo chmod +x /home/$pure/.config/autostart/firstlogon.sh
+             sudo chown $pure:$pure /home/$pure/.config/autostart/firstlogon.sh
+#             cd .config/autostart
+             sudo mv /home/$pure/.config/autostart/firstlogon.sh /home/$pure/.config/autostart/firstlogon.desktop
+             sudo chown $pure:$pure /home/$pure/.config/autostart/firstlogon.desktop
+#             cd ..
+#             cd ..
              echo "- Cleanning install..."
-             sudo rm -rf .config/autostart/firstlogon.sh
-             sudo rm -rf /usr/lib/floflis/layers/core/firstlogon.sh
-             sudo rm -rf /usr/lib/floflis/layers/core/firstlogonroot.sh
-             #sudo rm -rf /etc/init.d/firstboot
-             sudo chmod -R a+rwX ${D} && sudo chown ${D//./}:${D//./} ${D}
+             sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
+             cd ..
+             sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
 done
           cd
           #the next line creates an empty file so it won't run the next boot
