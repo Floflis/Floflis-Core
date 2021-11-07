@@ -312,6 +312,10 @@ fi
    $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
    $maysudo chmod 755 /usr/bin/floflis-central
    
+   echo "- Cleanning install, saving settings..."
+   $maysudo rm /usr/lib/floflis/layers/core/install.sh
+   $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
+   
    echo "- Saving settings as JSON..."
    cat > /1/Floflis/system/os.json << ENDOFFILE
 {
@@ -324,6 +328,9 @@ fi
 "distrobase":""
 }
 ENDOFFILE
+
+   . /usr/lib/floflis/./config
+
    contents="$(jq ".name = \"$osname\"" /1/Floflis/system/os.json)" && \
    echo "${contents}" > /1/Floflis/system/os.json
    contents="$(jq ".version = \"$osversion\"" /1/Floflis/system/os.json)" && \
@@ -334,11 +341,7 @@ ENDOFFILE
    echo "${contents}" > /1/Floflis/system/os.json
    contents="$(jq ".distrobase = \"$distrobase\"" /1/Floflis/system/os.json)" && \
    echo "${contents}" > /1/Floflis/system/os.json
-
-   echo "- Cleanning install, saving settings..."
-   $maysudo rm /usr/lib/floflis/layers/core/install.sh
-   $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
-   bash /usr/lib/floflis/config
+   
    contents="$(jq ".layer = \"$layer\"" /1/Floflis/system/os.json)" && \
    echo "${contents}" > /1/Floflis/system/os.json
    contents="$(jq ".nxtlayer = \"$nxtlayer\"" /1/Floflis/system/os.json)" && \
