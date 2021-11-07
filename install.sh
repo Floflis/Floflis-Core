@@ -251,9 +251,10 @@ $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 #"}
 #ENDOFFILE
 
-    #echo "Creating sys folder..."
-    #mkdir /1/Floflis
-    #echo ""
+    echo "Creating sys folder..."
+    mkdir /1/Floflis
+    mkdir /1/Floflis/system
+    echo ""
     #tar xfvz 
 fi
 
@@ -310,6 +311,29 @@ fi
    echo "- Installing Floflis Central..."
    $maysudo mv /usr/lib/floflis/layers/core/floflis-central /usr/bin
    $maysudo chmod 755 /usr/bin/floflis-central
+   
+   echo "- Saving settings as JSON..."
+   cat > /1/Floflis/system/os.json << ENDOFFILE
+{
+"name":"",
+"version": "",
+"build":"",
+"year":"",
+"layer":"",
+"nxtlayer":"",
+"distrobase":""
+}
+ENDOFFILE
+   contents="$(jq ".name = \"$osname\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".version = \"$osversion\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".build = \"$osbuild\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".year = \"$year\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".distrobase = \"$distrobase\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
 
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/core/install.sh
