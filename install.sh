@@ -338,6 +338,11 @@ ENDOFFILE
    echo "- Cleanning install, saving settings..."
    $maysudo rm /usr/lib/floflis/layers/core/install.sh
    $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
+   source /usr/lib/floflis/config
+   contents="$(jq ".layer = \"$layer\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".nxtlayer = \"$nxtlayer\"" /1/Floflis/system/os.json)" && \
+   echo "${contents}" > /1/Floflis/system/os.json
    echo "(✓) Floflis DNA has been upgraded to Floflis Core."
 else
    echo "(X) Floflis DNA isn't found. Please install Floflis DNA before installing Floflis Core."
