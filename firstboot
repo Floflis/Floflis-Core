@@ -63,6 +63,53 @@ ENDOFFILE
              sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
 done
           cd
+# knows if upper layers are present, and install their firstboot
+          if [ -e /usr/lib/floflis/layers/soil ] || [ -e /usr/lib/floflis/layers/server ]
+          then
+             echo "- Upper layers are here. Detecting..."
+# Server>
+             if [ -f /usr/lib/floflis/layers/server/firstboot ];then
+             echo "- Openning Floflis Server firstboot installer..."
+             $maysudo chmod +x /usr/lib/floflis/layers/server/firstboot && cd /usr/lib/floflis/layers/server && sh ./firstboot
+fi
+# <Server
+# Soil>
+             if [ -f /usr/lib/floflis/layers/soil/firstboot ];then
+                echo "- Openning Floflis Soil firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/soil/firstboot && cd /usr/lib/floflis/layers/soil && sh ./firstboot
+fi
+# <Soil
+# Grass>
+             if [ -f /usr/lib/floflis/layers/grass/firstboot ];then
+                echo "- Openning Floflis Grass firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/grass/firstboot && cd /usr/lib/floflis/layers/grass && sh ./firstboot
+fi
+# <Grass
+# Base>
+             if [ -f /usr/lib/floflis/layers/base/firstboot ];then
+                echo "- Openning Floflis Base firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/base/firstboot && cd /usr/lib/floflis/layers/base && sh ./firstboot
+fi
+# <Base
+# Home>
+             if [ -f /usr/lib/floflis/layers/home/firstboot ];then
+                echo "- Openning Floflis Home firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/home/firstboot && cd /usr/lib/floflis/layers/home && sh ./firstboot
+fi
+# <Home
+# Ultimate>
+             if [ -f /usr/lib/floflis/layers/ultimate/firstboot ];then
+                echo "- Openning Floflis Ultimate firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/ultimate/firstboot && cd /usr/lib/floflis/layers/ultimate && sh ./firstboot
+fi
+# <Ultimate
+# Planetary>
+             if [ -f /usr/lib/floflis/layers/planetary/firstboot ];then
+                echo "- Openning Floflis Planetary firstboot installer..."
+                $maysudo chmod +x /usr/lib/floflis/layers/planetary/firstboot && cd /usr/lib/floflis/layers/planetary && sh ./firstboot
+fi
+# <Planetary
+fi          
           #the next line creates an empty file so it won't run the next boot
           touch $FLAG
        else
