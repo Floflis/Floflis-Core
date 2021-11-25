@@ -141,7 +141,7 @@ fi
 $maysudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
 #!/bin/bash
 
-ipfs daemon
+(ipfs daemon &)
 ENDOFFILE
 
 $maysudo chmod +x /usr/bin/ipfsdaemon
