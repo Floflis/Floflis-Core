@@ -46,7 +46,7 @@ fi
 
 if [ ! -e /usr/lib/floflis/layers/server ]
 then
-   echo "Don't install SSH if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads. Estimated 1MB to download/6 MB installed."
+   echo "Don't install SSH if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads IF YOU ARE TECHY AND UNDERSTANDS ABOUT SSH. Estimated 1MB to download/6 MB installed."
    echo "Do you want to install SSH? [Y/n]"
    read instssh
    case $instssh in
