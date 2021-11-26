@@ -39,7 +39,7 @@ else
              cat > /home/$pure/.config/autostart/firstlogon.sh << ENDOFFILE
 [Desktop Entry]
 Type=Application
-Exec=gnome-terminal --tab --title="Welcome to Floflis! 👭" -- /bin/sh -c 'cd /home; sudo sh ./firstlogon.sh; exec bash'
+Exec=gnome-terminal --tab --title="Welcome to Floflis! 👭" -- /bin/sh -c 'cd /home; sh ./firstlogon.sh; exec bash'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
