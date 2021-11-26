@@ -8,6 +8,10 @@
 # Short-Description: Start firstboot script
 ### END INIT INFO
 
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" = "/cow" ]; then
+   exit
+fi
+
 if cat /proc/1/cgroup | tail -1 | grep -q "container"; then
   echo "linux container. Floflis' firstboot won't run."
 else
