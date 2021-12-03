@@ -142,10 +142,20 @@ done
 
 # to-merge>
              if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
+                installtermfont(){
+                cat >> /tmp/org-gnome-terminal-legacy-profiles <<EOF
+[/]
+bold-is-bright=true
+font='FantasqueSansMono Nerd Font 12'
+use-system-font=false
+EOF
+                dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < /tmp/org-gnome-terminal-legacy-profiles
+                rm -f /tmp/org-gnome-terminal-legacy-profiles
+}
                 echo "You have to logout, so changes will take effect."
                 echo "Save any work you did (only if you did)."
                 echo "Logout? [Y/n]"
-                read logoutinput;case $logoutinput in [nN]) break ;; [yY]) cinnamon-session-quit --logout --force; esac
+                read logoutinput;case $logoutinput in [nN]) break ;; [yY]) installtermfont;cinnamon-session-quit --logout --force; esac
 fi
 # <to-merge
 
