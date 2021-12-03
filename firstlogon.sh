@@ -140,4 +140,13 @@ do
    rm -f /home/$pure/.config/autostart/firstlogon.desktop
 done
 
+# to-merge>
+             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
+                echo "You have to logout, so changes will take effect."
+                echo "Save any work you did (only if you did)."
+                echo "Logout? [Y/n]"
+                read logoutinput;case $logoutinput in [nN]) break ;; [yY]) cinnamon-session-quit --logout --force; esac
+fi
+# <to-merge
+
 echo "(✓) Floflis has been successfully installed! You can now use it :)"
