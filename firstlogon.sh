@@ -140,6 +140,8 @@ do
    rm -f /home/$pure/.config/autostart/firstlogon.desktop
 done
 
+echo "(✓) Floflis has been successfully installed! You can now use it :)"
+
 # to-merge>
              if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
                 installtermfont(){
@@ -159,4 +161,4 @@ EOF
 fi
 # <to-merge
 
-echo "(✓) Floflis has been successfully installed! You can now use it :)"
+# run layers' finishing scripts here, so they do their needs
