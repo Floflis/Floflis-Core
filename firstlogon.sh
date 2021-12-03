@@ -62,7 +62,7 @@ then
 esac
 fi
 
-gnome-terminal --tab --title="Installer (root mode)" -- /bin/sh -c 'cd /home; sudo sh ./firstlogonroot.sh; exec bash'
+gnome-terminal --tab --title="Installer (root mode)" -- /bin/sh -c 'cd /home; sudo bash firstlogonroot.sh; exec bash'
 
 until [ ! -e firstlogonroot.sh ]
 do
