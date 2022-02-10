@@ -3,8 +3,7 @@
 # Layer: Core
 
 # load definitions & settings
-source /usr/lib/floflis/config
-# it doesn't works yet. need to do it manually here:
+#source /usr/lib/floflis/config # it doesn't works yet. need to do it manually here:
 unameOutM="$(uname -m)"
 case "${unameOutM}" in
     i286)   flofarch="286";;
