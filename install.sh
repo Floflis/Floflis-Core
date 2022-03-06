@@ -180,12 +180,13 @@ fi
 #         ipfs
 #fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/ethereal/ethereal-2.6.0-linux-amd64.tar.gz
+         tar -xzf include/ethereal/ethereal-2.7.3plus-linux-amd64.tar.gz.tar.gz
          $maysudo mv ethereal /usr/bin
          chmod +x /usr/bin/ethereal
          echo "Testing if ethereal works:"
          ethereal
 fi
+#ethereal-2.7.3-linux-arm64.tar.gz
 
 #- This will add about 39.8 MB of files:
 #- If your device have enough space and you want to update it using Web3Updater, it'll need ethereal.
