@@ -286,6 +286,14 @@ fi
    # Installing HTML5 files...
    echo "Installing /1/src"
    $maysudo mkdir /1/src
+   #echo "Installing /1/personal/data/issues"
+   #$maysudo mkdir /1/personal
+   #$maysudo mkdir /1/personal/data
+   #$maysudo mkdir /1/personal/data/issues
+   echo "- Creating /1/personal..."
+   $maysudo mkdir /1/personal
+   echo "- Creating /1/personal/data..."
+   $maysudo mkdir /1/personal/data
    
    #task: run this cmd only if detecting ubuntu+chroot
    #removed. is this cmd an requirement? for now, lets experiment with an init script.
