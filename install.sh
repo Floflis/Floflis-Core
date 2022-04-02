@@ -275,7 +275,7 @@ fi
    echo "- Setting permissions on /libraries/replic..."
    $maysudo chmod -R a+rwX /1/libraries/replic/
    echo "- Creating root folder inside tree..."
-   $maysudo ln -s / /1/Z-root
+   $maysudo ln -s ../ Z-root
    # Installing classic apps...
    # chmod cj
    # Creating folders for games and HTML5 files
