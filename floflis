@@ -1,7 +1,10 @@
 #!/bin/bash
-if [ -e /usr/lib/floflis/layers/core/modules/update ]
+
+# load modules
+# -
+if [ -f /usr/lib/floflis/layers/core/modules ]
 then
-    source /usr/lib/floflis/layers/core/modules/update
+    . /usr/lib/floflis/layers/core/modules.sh
 fi
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
