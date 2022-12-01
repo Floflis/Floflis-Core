@@ -1,0 +1,37 @@
+#!/bin/bash
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+   echo "Updates:"
+   echo "   update (--gitlab, --github) Updates Floflis (centralized, yet)"
+fi
+
+if [ "$1" = "update" ] || [ "$1" = "updt" ] || [ "$1" = "next" ] || [ "$1" = "up" ]; then
+   if [ "$2" = "" ]; then
+      echo "Can't update yet on a decentralized manner. Please use 'update --gitlab' command."
+      echo ""
+      echo "When you can't update from git, I ask you to keep your clonned git folder of Floflis dna, update using 'git pull' inside it, optionally open init.sh and then manually re-install it using install.sh."
+      echo ""
+      echo "Type 'floflis update --gitlab' to update from GitLab, or 'floflis update --github' to update from GitHub."
+fi
+fi
+
+if [ "$1" = "update" ]; then
+   if [ "$2" = "gitlab" ] || [ "$2" = "--gitlab" ]; then
+      echo "- Updating Floflis dna (from GitLab)..."
+      echo "(i) Updating a Layer requires sudo mode;"
+     #this only updates the Floflis binaries/libs, not its install
+      cd /usr/lib/floflis/layers/dna && sudo git pull origin master
+      echo "(✓) Successfully updated Floflis DNA (from GitLab)."
+      # ensure install.sh is added with this git pull, and run it, with update scripts according to current version
+      cd /usr/lib/floflis/layers/core && sudo git pull origin master
+      echo "(✓) Successfully updated Floflis Core (from GitLab)."
+fi
+   if [ "$2" = "github" ] || [ "$2" = "--github" ]; then
+      echo "If you receive a blue screen, don't blame on us." && echo "- Updating Floflis DNA (from Microsoft GitHub)..."
+      echo "(i) Updating a Layer requires sudo mode;"
+      #this only updates the Floflis binaries/libs, not its install
+      cd /usr/lib/floflis/layers/dna && sudo git pull github master
+      echo "(✓) Successfully updated Floflis DNA (from Microsoft GitHub)."
+      cd /usr/lib/floflis/layers/core && sudo git pull github master
+      echo "(✓) Successfully updated Floflis Core (from Microsoft GitHub)."
+fi
+fi

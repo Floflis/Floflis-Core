@@ -1,4 +1,7 @@
-if [ -e /usr/lib/floflis/layers/core/modules/update ]
+#!/bin/bash
+
+# update
+if [ -f /usr/lib/floflis/layers/core/modules/update ]
 then
-    source /usr/lib/floflis/layers/core/modules/update
+    . /usr/lib/floflis/layers/core/modules/./update
 fi
