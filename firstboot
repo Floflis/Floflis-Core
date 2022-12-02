@@ -33,8 +33,8 @@ else
           do
              pure=$(echo "${D}" | tr -d "/" | tr -d ".")
              cd ${D}
-             mkdir .config
-             mkdir .config/autostart
+             if [ ! -e .config ]; then mkdir .config; fi
+             if [ ! -e .config/autostart ]; then mkdir .config/autostart; fi
 #             cd .config/autostart
              cat > /home/$pure/.config/autostart/firstlogon.sh << ENDOFFILE
 [Desktop Entry]

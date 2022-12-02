@@ -24,16 +24,13 @@ esac
 #done
 
 is_root=false
-
 if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
    then
       is_root=false
    else
       is_root=true
 fi
-
 maysudo=""
-
 if [ "$is_root" = "false" ]
    then
       maysudo="sudo"
@@ -65,9 +62,11 @@ if [ -e /usr/lib/floflis/layers/dna ]
 then
    echo "(✓) Floflis DNA is detected."
    echo "- Upgrading to Floflis Core..."
-   echo "- Creating tree folder above root..."
-   echo "- Creating /1 (tree) folder..."
-   $maysudo mkdir /1
+   if [ ! -e /1 ]; then
+      echo "- Creating tree folder above root..."
+      echo "- Creating /1 (tree) folder..."
+      $maysudo mkdir /1
+   fi
    echo "- Setting permissions on /1 (tree) folder..."
    $maysudo chmod -R a+rwX /1
 
@@ -90,7 +89,6 @@ then
 fi
 
 # Install jq:
-
    echo "Installing jq..."
        
       if [ "$flofarch" = "386" ]; then
@@ -109,7 +107,6 @@ fi
 fi
 
 # Install IPFS:
-
    echo "Installing IPFS..."
 
       if [ "$flofarch" = "386" ]; then
@@ -142,13 +139,10 @@ $maysudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
 
 (ipfs daemon &)
 ENDOFFILE
-
 $maysudo chmod +x /usr/bin/ipfsdaemon
 
 # Install ipget:
-
    echo "Installing ipget..."
-
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/ipget/ipget_v0.6.0_linux-386.tar.gz
          $maysudo mv ipget/ipget /usr/bin
@@ -167,9 +161,7 @@ fi
 fi
 
 # Install ethereal:
-
    echo "Installing ethereal..."
-
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
@@ -202,7 +194,6 @@ echo "- Installing programs..."
 $maysudo apt-get install aria2
 
 # Install git:
-
 echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
 echo "Do you want to install git? [Y/n]"
 read insgit
@@ -232,8 +223,7 @@ esac
 echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 
-       echo "Creating settings folder..."
-       mkdir /1/config
+       if [ ! -e /1/config ]; then echo "Creating settings folder...";mkdir /1/config; fi
 
 #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
@@ -251,10 +241,8 @@ $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 #"}
 #ENDOFFILE
 
-    echo "Creating sys folder..."
-    mkdir /1/Floflis
-    mkdir /1/Floflis/system
-    echo ""
+    if [ ! -e /1/Floflis ]; then echo "Creating sys folder...";mkdir /1/Floflis; fi
+    if [ ! -e /1/Floflis/system ]; then mkdir /1/Floflis/system;echo ""; fi
     #tar xfvz 
 fi
 
@@ -266,16 +254,12 @@ fi
    # /1/apps /1/appsclassic /1/games /1/gamesclassic
    # Creating Apps folder... /1/Apps
    # Installing apps...
-   echo "Creating folder for classic apps (/programs)..."
-   $maysudo mkdir /1/programs
-   echo "Creating /libraries..."
-   $maysudo mkdir /1/libraries
-   echo "Creating /libraries/replic..."
-   $maysudo mkdir /1/libraries/replic
+   if [ ! -e /1/programs ]; then echo "Creating folder for classic apps (/programs)...";$maysudo mkdir /1/programs; fi
+   if [ ! -e /1/libraries ]; then echo "Creating /libraries...";$maysudo mkdir /1/libraries; fi
+   if [ ! -e /1/libraries/replic ]; then echo "Creating /libraries/replic...";$maysudo mkdir /1/libraries/replic; fi
    echo "- Setting permissions on /libraries/replic..."
    $maysudo chmod -R a+rwX /1/libraries/replic/
-   echo "- Creating root folder inside tree..."
-   $maysudo ln -s ../ Z-root
+   if [ ! -f /1/Z-root ]; then echo "- Creating root folder inside tree...";$maysudo ln -s ../ Z-root; fi
    # Installing classic apps...
    # chmod cj
    # Creating folders for games and HTML5 files
@@ -284,16 +268,13 @@ fi
    # Creating HTML5 folder...
    # /1/html5
    # Installing HTML5 files...
-   echo "Installing /1/src"
-   $maysudo mkdir /1/src
+   if [ ! -e /1/src ]; then echo "Installing /1/src";$maysudo mkdir /1/src; fi
    #echo "Installing /1/personal/data/issues"
    #$maysudo mkdir /1/personal
    #$maysudo mkdir /1/personal/data
    #$maysudo mkdir /1/personal/data/issues
-   echo "- Creating /1/personal..."
-   $maysudo mkdir /1/personal
-   echo "- Creating /1/personal/data..."
-   $maysudo mkdir /1/personal/data
+   if [ ! -e /1/personal ]; then echo "- Creating /1/personal...";$maysudo mkdir /1/personal; fi
+   if [ ! -e /1/personal/data ]; then echo "- Creating /1/personal/data...";$maysudo mkdir /1/personal/data; fi
    
    #task: run this cmd only if detecting ubuntu+chroot
    #removed. is this cmd an requirement? for now, lets experiment with an init script.
