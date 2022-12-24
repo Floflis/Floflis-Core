@@ -107,26 +107,27 @@ fi
 fi
 
 # Install IPFS:
-   echo "Installing IPFS..."
 
-      if [ "$flofarch" = "386" ]; then
-         tar -xzf include/IPFS/go-ipfs_v0.9.0-rc1_linux-386.tar.gz
-         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-         $maysudo mv go-ipfs/ipfs /usr/bin
-         $maysudo rm -rf go-ipfs
-         chmod +x /usr/bin/ipfs
-         echo "Testing if IPFS works:"
-         ipfs
-fi
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.9.0-rc1_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/IPFS/go-ipfs_v0.9.0-rc1_linux-amd64.tar.gz
-         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-         $maysudo mv go-ipfs/ipfs /usr/bin
-         $maysudo rm -rf go-ipfs
+         echo "Installing IPFS..."
+         tar -xzf include/IPFS/kubo_v0.18.0-rc1_linux-amd64.tar.gz
+         rm -f kubo/install.sh && rm -f kubo/LICENSE && rm -f kubo/LICENSE-MIT && rm -f kubo/LICENSE-APACHE && rm -f kubo/README.md
+         $maysudo mv kubo/ipfs /usr/bin
+         $maysudo rm -rf kubo
          chmod +x /usr/bin/ipfs
          echo "Testing if IPFS works:"
          ipfs
 fi
+# <---- future task: check against .cid file; floflis icons: icon for .cid files
 
 #- This will add about 46 MB of files:
 #- If your device have enough space and you want to update it using Web3Updater, it'll need IPFS.
