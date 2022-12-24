@@ -127,7 +127,7 @@ fi
          echo "Testing if IPFS works:"
          ipfs
 fi
-# <---- future task: check against .cid file; floflis icons: icon for .cid files
+# <---- future task: check against .cid file; floflis icons: icon for .cid files and file handler for comparing
 
 #- This will add about 46 MB of files:
 #- If your device have enough space and you want to update it using Web3Updater, it'll need IPFS.
@@ -162,7 +162,7 @@ fi
 fi
 
 # Install ethereal:
-   echo "Installing ethereal..."
+
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
@@ -173,13 +173,15 @@ fi
 #         ipfs
 #fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/ethereal/ethereal-2.7.4-linux-amd64.tar.gz
+         echo "Installing ethereal..."
+         tar -xzf include/ethereal/ethereal-2.8.5-linux-amd64.tar.gz
          $maysudo mv ethereal /usr/bin
          chmod +x /usr/bin/ethereal
          echo "Testing if ethereal works:"
          ethereal
 fi
 #ethereal-2.7.4-linux-arm64.tar.gz
+# <---- future task: check against .sha256 file; floflis icons: icon for .sha256 files and file handler for comparing
 
 #- This will add about 39.8 MB of files:
 #- If your device have enough space and you want to update it using Web3Updater, it'll need ethereal.
