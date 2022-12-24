@@ -292,13 +292,15 @@ fi
    $maysudo systemctl enable flo-init
    $maysudo systemd enable flo-init
    
-   echo "- Installing Floflis' first boot script..."
-   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
-   $maysudo chmod +x /etc/init.d/firstboot
-   $maysudo update-rc.d firstboot defaults
-   $maysudo update-rc.d firstboot enable
-   $maysudo systemctl enable firstboot
-   $maysudo systemd enable firstboot
+# UBUNTUCINNAMON TEMPORARILY DISABLE ---->
+#   echo "- Installing Floflis' first boot script..."
+#   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
+#   $maysudo chmod +x /etc/init.d/firstboot
+#   $maysudo update-rc.d firstboot defaults
+#   $maysudo update-rc.d firstboot enable
+#   $maysudo systemctl enable firstboot
+#   $maysudo systemd enable firstboot
+# <---- UBUNTUCINNAMON TEMPORARILY DISABLE
 
    echo "- Installing Floflis Central..."
    $maysudo mv /usr/lib/floflis/layers/core/central /usr/bin
