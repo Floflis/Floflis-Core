@@ -144,7 +144,7 @@ $maysudo chmod +x /usr/bin/ipfsdaemon
 # Install ipget:
    echo "Installing ipget..."
       if [ "$flofarch" = "386" ]; then
-         tar -xzf include/ipget/ipget_v0.6.0_linux-386.tar.gz
+         tar -xzf include/ipget/ipget_v0.9.1_linux-386.tar.gz
          $maysudo mv ipget/ipget /usr/bin
          $maysudo rm -rf ipget
          chmod +x /usr/bin/ipget
@@ -152,7 +152,7 @@ $maysudo chmod +x /usr/bin/ipfsdaemon
          ipget
 fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/ipget/ipget_v0.6.0_linux-amd64.tar.gz
+         tar -xzf include/ipget/ipget_v0.9.1_linux-amd64.tar.gz
          $maysudo mv ipget/ipget /usr/bin
          $maysudo rm -rf ipget
          chmod +x /usr/bin/ipget
