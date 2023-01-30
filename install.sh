@@ -14,6 +14,8 @@ case "${unameOutM}" in
     riscv64) flofarch="riscv64"
 esac
 
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
 # would detect fakeroot 
 #for path in ${LD_LIBRARY_PATH//:/ }; do
 #   if [[ "$path" == *libfakeroot ]]
@@ -106,59 +108,43 @@ fi
          jq
 fi
 
-# Install IPFS:
+echo "Installing gipfs (includes IPFS, ipget, etc)..."
+cd include/gipfs
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Web3HQ/gipfs.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+echo "Testing if gipfs works:"
+gipfs
 
-      if [ "$flofarch" = "386" ]; then
-         echo "Installing IPFS..."
-         tar -xzf include/IPFS/kubo_v0.18.0_linux-386.tar.gz
-         $maysudo mv kubo/ipfs /usr/bin
-         $maysudo rm -r kubo
-         chmod +x /usr/bin/ipfs
-         echo "Testing if IPFS works:"
-         ipfs
-fi
-      if [ "$flofarch" = "amd64" ]; then
-         echo "Installing IPFS..."
-         tar -xzf include/IPFS/kubo_v0.18.0_linux-amd64.tar.gz
-         $maysudo mv kubo/ipfs /usr/bin
-         $maysudo rm -r kubo
-         chmod +x /usr/bin/ipfs
-         echo "Testing if IPFS works:"
-         ipfs
-fi
-# <---- future task: check against .cid file; floflis icons: icon for .cid files and file handler for comparing
+echo "Installing filepeace (includes webpresent, folderstamp, etc)..."
+cd include/filepeace
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FilePeace/filepeace.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+echo "Testing if filepeace works:"
+filepeace
 
-#- This will add about 46 MB of files:
-#- If your device have enough space and you want to update it using Web3Updater, it'll need IPFS.
-#- Large files like IPFS aren't suitable to an core device such as a router.
-#- Want to install IPFS, an P2P decentralized file network (evolution of Torrent)?
-#- task: if Floflis ISO/Cubic, automatically install IPFS
-
-$maysudo cat > /usr/bin/ipfsdaemon << ENDOFFILE
-#!/bin/bash
-
-(ipfs daemon &)
-ENDOFFILE
-$maysudo chmod +x /usr/bin/ipfsdaemon
-
-# Install ipget:
-   echo "Installing ipget..."
-      if [ "$flofarch" = "386" ]; then
-         tar -xzf include/ipget/ipget_v0.9.1_linux-386.tar.gz
-         $maysudo mv ipget/ipget /usr/bin
-         $maysudo rm -rf ipget
-         chmod +x /usr/bin/ipget
-         echo "Testing if ipget works:"
-         ipget
-fi
-      if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/ipget/ipget_v0.9.1_linux-amd64.tar.gz
-         $maysudo mv ipget/ipget /usr/bin
-         $maysudo rm -rf ipget
-         chmod +x /usr/bin/ipget
-         echo "Testing if ipget works:"
-         ipget
-fi
+echo "Installing 01 VCS..."
+cd include/01
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f 01
+#rm -f git
+#rm -f README.md
+#rm -f recipe.json
+#rm -f Tasks.txt
+#rm -f .gitignore
+#rm -f .gitmeta
+cd "$SCRIPTPATH"
+echo "Testing if 01 works:"
+01
 
 # Install ethereal:
 
