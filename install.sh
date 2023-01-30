@@ -90,6 +90,16 @@ then
          $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
 
+echo "Installing filepeace (includes webpresent, folderstamp, etc)..."
+cd include/filepeace
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/FilePeace/filepeace.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+cd "$SCRIPTPATH"
+echo "Testing if filepeace works:"
+filepeace
+
 # Install jq:
    echo "Installing jq..."
        
@@ -117,16 +127,6 @@ chmod +x install.sh && $maysudo sh ./install.sh
 cd "$SCRIPTPATH"
 echo "Testing if gipfs works:"
 gipfs
-
-echo "Installing filepeace (includes webpresent, folderstamp, etc)..."
-cd include/filepeace
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/FilePeace/filepeace.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-cd "$SCRIPTPATH"
-echo "Testing if filepeace works:"
-filepeace
 
 echo "Installing 01 VCS..."
 cd include/01
