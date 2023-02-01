@@ -43,7 +43,8 @@ fi
 # <Core
 
 # Install SSH:
-
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
 if [ ! -e /usr/lib/floflis/layers/server ]
 then
    echo "Don't install SSH if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads IF YOU ARE TECHY AND UNDERSTANDS ABOUT SSH. Estimated 1MB to download/6 MB installed."
@@ -61,6 +62,7 @@ then
          echo "${invalid}" ;;
 esac
 fi
+fi
 
 gnome-terminal --tab --title="Installer (root mode)" -- /bin/sh -c 'cd /home; sudo bash firstlogonroot.sh; exec bash'
 
@@ -70,6 +72,8 @@ do
    sleep 15s
 done
 
+if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
+echo "DEBUG: Not a Live ISO"
 cd /home/${flouser}/.config/autostart
 sudo chmod +x IPFS.sh
 sudo chown ${flouser}:${flouser} /home/${flouser}/.config/autostart/IPFS.sh
@@ -79,6 +83,7 @@ sudo chown ${flouser}:${flouser} /home/${flouser}/.config/autostart/IPFS.desktop
 echo "- Initializing IPFS..."
 ipfs init
 echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or restart your computer after Floflis is fully installed."
+fi
 
 # knows if upper layers are present, and install their firstlogon
           if [ -e /usr/lib/floflis/layers/soil ] || [ -e /usr/lib/floflis/layers/server ]
