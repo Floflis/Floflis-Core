@@ -92,43 +92,43 @@ fi
 # Server>
              if [ -f /usr/lib/floflis/layers/server/firstlogon.sh ];then
              echo "- Openning Floflis Server firstlogon installer..."
-             sudo chmod +x /usr/lib/floflis/layers/server/firstlogon.sh && cd /usr/lib/floflis/layers/server && sh ./firstlogon.sh
+             sudo chmod +x /usr/lib/floflis/layers/server/firstlogon.sh && cd /usr/lib/floflis/layers/server && bash ./firstlogon.sh
 fi
 # <Server
 # Soil>
              if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
                 echo "- Openning Floflis Soil firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/soil/firstlogon.sh && cd /usr/lib/floflis/layers/soil && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/soil/firstlogon.sh && cd /usr/lib/floflis/layers/soil && bash ./firstlogon.sh
 fi
 # <Soil
 # Grass>
              if [ -f /usr/lib/floflis/layers/grass/firstlogon.sh ];then
                 echo "- Openning Floflis Grass firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/grass/firstlogon.sh && cd /usr/lib/floflis/layers/grass && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/grass/firstlogon.sh && cd /usr/lib/floflis/layers/grass && bash ./firstlogon.sh
 fi
 # <Grass
 # Base>
              if [ -f /usr/lib/floflis/layers/base/firstlogon.sh ];then
                 echo "- Openning Floflis Base firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/base/firstlogon.sh && cd /usr/lib/floflis/layers/base && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/base/firstlogon.sh && cd /usr/lib/floflis/layers/base && bash ./firstlogon.sh
 fi
 # <Base
 # Home>
              if [ -f /usr/lib/floflis/layers/home/firstlogon.sh ];then
                 echo "- Openning Floflis Home firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/home/firstlogon.sh && cd /usr/lib/floflis/layers/home && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/home/firstlogon.sh && cd /usr/lib/floflis/layers/home && bash ./firstlogon.sh
 fi
 # <Home
 # Ultimate>
              if [ -f /usr/lib/floflis/layers/ultimate/firstlogon.sh ];then
                 echo "- Openning Floflis Ultimate firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/ultimate/firstlogon.sh && cd /usr/lib/floflis/layers/ultimate && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/ultimate/firstlogon.sh && cd /usr/lib/floflis/layers/ultimate && bash ./firstlogon.sh
 fi
 # <Ultimate
 # Planetary>
              if [ -f /usr/lib/floflis/layers/planetary/firstlogon.sh ];then
                 echo "- Openning Floflis Planetary firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/planetary/firstlogon.sh && cd /usr/lib/floflis/layers/planetary && sh ./firstlogon.sh
+                sudo chmod +x /usr/lib/floflis/layers/planetary/firstlogon.sh && cd /usr/lib/floflis/layers/planetary && bash ./firstlogon.sh
 fi
 # <Planetary
 fi          
