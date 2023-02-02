@@ -3,16 +3,7 @@
 # Layer: Core
 
 # load definitions & settings
-#source /usr/lib/floflis/config # it doesn't works yet. need to do it manually here:
-unameOutM="$(uname -m)"
-case "${unameOutM}" in
-    i286)   flofarch="286";;
-    i386)   flofarch="386";;
-    i686)   flofarch="386";;
-    x86_64) flofarch="amd64";;
-    arm)    dpkg --print-flofarch | grep -q "arm64" && flofarch="arm64" || flofarch="arm";;
-    riscv64) flofarch="riscv64"
-esac
+. /usr/lib/floflis/./config
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
