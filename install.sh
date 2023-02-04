@@ -243,6 +243,10 @@ esac
 #echo "- Updating your Linux distro (again)..."
 #$maysudo apt-get update && $maysudo apt-get upgrade
 
+echo "Upgrading packages and distro packages..."
+$maysudo apt upgrade
+$maysudo apt dist-upgrade
+
 echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 
