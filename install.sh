@@ -81,6 +81,10 @@ then
          $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
 
+echo "Updating apt..."
+$maysudo add-apt-repository universe -y
+$maysudo apt-get update -y
+
 echo "Installing filepeace (includes webpresent, folderstamp, etc)..."
 cd include/filepeace
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/FilePeace/filepeace.git .; fi
@@ -208,10 +212,6 @@ fi
 #- Large files like ethereal aren't suitable to an core device such as a router.
 #- Want to install ethereal, to use Ethereum and ENS?
 #- task: if Floflis ISO/Cubic, automatically install ethereal
-
-echo "Updating apt..."
-$maysudo add-apt-repository universe -y
-$maysudo apt-get update -y
 
 echo "- Installing programs..."
 $maysudo apt-get install aria2
