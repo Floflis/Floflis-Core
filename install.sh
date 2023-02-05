@@ -216,24 +216,6 @@ fi
 echo "- Installing programs..."
 $maysudo apt-get install aria2
 
-# Install git:
-echo "git is a need also for downloading updates. It is 6,3MB to download and 34.9 MB installed."
-echo "Do you want to install git? [Y/n]"
-read insgit
-case $insgit in
-   [nN])
-      echo "${ok}"
-      break ;;
-   [yY])
-      echo "Installing git..."
-      $maysudo apt-get install git -y
-      break ;;
-   *)
-      echo "${invalid}" ;;
-esac
-
-#- task: if Floflis ISO/Cubic, automatically install git/git-lfs
-
 #echo "- Updating your Linux distro..."
 #$maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
 
