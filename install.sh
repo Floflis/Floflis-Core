@@ -85,6 +85,24 @@ echo "Updating apt..."
 $maysudo add-apt-repository universe -y
 $maysudo apt-get update -y
 
+echo "Installing 01 VCS..."
+cd include/01
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f 01
+#rm -f git
+#rm -f README.md
+#rm -f recipe.json
+#rm -f Tasks.txt
+#rm -f .gitignore
+#rm -f .gitmeta
+cd "$SCRIPTPATH"
+echo "Testing if 01 works:"
+01
+
 echo "Installing filepeace (includes webpresent, folderstamp, etc)..."
 cd include/filepeace
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/FilePeace/filepeace.git .; fi
@@ -122,24 +140,6 @@ chmod +x install.sh && $maysudo sh ./install.sh
 cd "$SCRIPTPATH"
 echo "Testing if gipfs works:"
 gipfs
-
-echo "Installing 01 VCS..."
-cd include/01
-if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
-if [ -e .git ]; then git pull; fi
-git checkout -f
-chmod +x install.sh && $maysudo sh ./install.sh
-#rm -f install.sh #use noah to exclude everything except .git
-#rm -f 01
-#rm -f git
-#rm -f README.md
-#rm -f recipe.json
-#rm -f Tasks.txt
-#rm -f .gitignore
-#rm -f .gitmeta
-cd "$SCRIPTPATH"
-echo "Testing if 01 works:"
-01
 
 echo "Installing online..."
 cd include/Tools/online
