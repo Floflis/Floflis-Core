@@ -117,15 +117,17 @@ filepeace
    echo "Installing jq..."
        
       if [ "$flofarch" = "386" ]; then
-         tar -xzf include/jq/jq-linux32.tar.gz
-         $maysudo mv jq /usr/bin
+#         tar -xzf include/jq/jq-linux32.tar.gz
+#         $maysudo mv jq /usr/bin
+         $maysudo cp -f include/jq/jq-linux32 /usr/bin/jq
          chmod +x /usr/bin/jq
          echo "Testing if jq works:"
          jq
 fi
       if [ "$flofarch" = "amd64" ]; then
-         tar -xzf include/jq/jq-linux64.tar.gz
-         $maysudo mv jq /usr/bin
+#         tar -xzf include/jq/jq-linux64.tar.gz
+#         $maysudo mv jq /usr/bin
+         $maysudo cp -f include/jq/jq-linux64 /usr/bin/jq
          chmod +x /usr/bin/jq
          echo "Testing if jq works:"
          jq
