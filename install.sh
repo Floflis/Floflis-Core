@@ -200,7 +200,7 @@ cd "$SCRIPTPATH"
 #fi
       if [ "$flofarch" = "amd64" ]; then
          echo "Installing ethereal..."
-         tar -xzf include/ethereal/ethereal-2.8.5-linux-amd64.tar.gz
+         tar -xzf include/ethereal/ethereal-2.8.7-linux-amd64.tar.gz
          $maysudo mv ethereal /usr/bin
          chmod +x /usr/bin/ethereal
          echo "Testing if ethereal works:"
