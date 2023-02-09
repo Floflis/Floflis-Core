@@ -229,7 +229,11 @@ $maysudo apt-get install aria2
 
 echo "Upgrading packages and distro packages..."
 $maysudo apt upgrade
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
 $maysudo apt dist-upgrade
+#-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
+$maysudo apt --fix-broken install
 
 echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
