@@ -85,6 +85,7 @@ echo "Updating apt..."
 $maysudo add-apt-repository universe -y
 $maysudo apt-get update -y
 
+$maysudo apt-get install git -y
 echo "Installing 01 VCS..."
 cd include/01
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
