@@ -134,6 +134,24 @@ fi
          jq
 fi
 
+# Install IPFS:
+      if [ "$flofarch" = "386" ]; then
+         tar -xzf include/gipfs/include/IPFS/kubo_v0.18.0_linux-amd64.tar.gz
+         sudo mv kubo/ipfs /usr/bin
+         sudo rm -r kubo
+         chmod +x /usr/bin/ipfs
+         echo "Testing if IPFS works:"
+         ipfs
+fi
+      if [ "$flofarch" = "amd64" ]; then
+         tar -xzf include/gipfs/include/IPFS/kubo_v0.18.0_linux-amd64.tar.gz
+         sudo mv kubo/ipfs /usr/bin
+         sudo rm -r kubo
+         chmod +x /usr/bin/ipfs
+         echo "Testing if IPFS works:"
+         ipfs
+fi
+# <---- future task: check against .cid file; floflis icons: icon for .cid files and file handler for comparing
 echo "Installing gipfs (includes IPFS, ipget, etc)..."
 cd include/gipfs
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Web3HQ/gipfs.git .; fi
