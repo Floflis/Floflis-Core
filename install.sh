@@ -83,7 +83,7 @@ fi
 
 echo "Updating apt..."
 $maysudo add-apt-repository universe -y
-$maysudo apt-get update -y
+$maysudo apt update -y
 
 $maysudo apt-get install git -y
 echo "Installing 01 VCS..."
@@ -247,10 +247,15 @@ $maysudo apt-get install aria2
 #$maysudo apt-get update && $maysudo apt-get upgrade
 
 echo "Upgrading packages and distro packages..."
-$maysudo apt upgrade
+$maysudo apt upgrade -y #from https://linuxhint.com/update_all_packages_ubuntu/
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
 $maysudo apt dist-upgrade
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
+$maysudo do-release-upgrade #from https://www.cyberciti.biz/faq/upgrade-ubuntu-20-04-lts-to-22-04-lts/
+$maysudo apt-get autoremove
+$maysudo apt-get autoclean
 #-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
 $maysudo apt --fix-broken install
 
