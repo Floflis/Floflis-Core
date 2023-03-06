@@ -341,6 +341,9 @@ fi
    $maysudo chmod 755 /usr/bin/central
    
    echo "- Cleanning install, saving settings..."
+   $maysudo apt-get autoremove
+   $maysudo apt-get autoclean
+   $maysudo apt --fix-broken install
    $maysudo rm /usr/lib/floflis/layers/core/install.sh
    $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
    
