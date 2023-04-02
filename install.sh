@@ -247,6 +247,7 @@ $maysudo apt-get install aria2
 #$maysudo apt-get update && $maysudo apt-get upgrade
 
 echo "Upgrading packages and distro packages..."
+$maysudo apt update && $maysudo apt upgrade
 $maysudo apt upgrade -y #from https://linuxhint.com/update_all_packages_ubuntu/
 $maysudo apt-get autoremove
 $maysudo apt-get autoclean
