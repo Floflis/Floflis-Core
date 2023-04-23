@@ -26,45 +26,45 @@ sudo chown ${flouser}:${flouser} /home/${flouser}/.local/share/gvfs-metadata/hom
           then
              echo "- Upper layers are here. Detecting..."
 # Server>
-             if [ -f /usr/lib/floflis/layers/server/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/server/firstlogonroot.sh ];then
              echo "- Openning Floflis Server firstlogon installer..."
-             sudo chmod +x /usr/lib/floflis/layers/server/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/server && bash ./to-merge_firstlogonroot.sh
+             sudo chmod +x /usr/lib/floflis/layers/server/firstlogonroot.sh && cd /usr/lib/floflis/layers/server && bash ./firstlogonroot.sh
 fi
 # <Server
 # Soil>
-             if [ -f /usr/lib/floflis/layers/soil/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/soil/firstlogonroot.sh ];then
                 echo "- Openning Floflis Soil firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/soil/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/soil && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/soil/firstlogonroot.sh && cd /usr/lib/floflis/layers/soil && bash ./firstlogonroot.sh
 fi
 # <Soil
 # Grass>
-             if [ -f /usr/lib/floflis/layers/grass/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/grass/firstlogonroot.sh ];then
                 echo "- Openning Floflis Grass firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/grass/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/grass && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/grass/firstlogonroot.sh && cd /usr/lib/floflis/layers/grass && bash ./firstlogonroot.sh
 fi
 # <Grass
 # Base>
-             if [ -f /usr/lib/floflis/layers/base/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/base/firstlogonroot.sh ];then
                 echo "- Openning Floflis Base firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/base/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/base && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/base/firstlogonroot.sh && cd /usr/lib/floflis/layers/base && bash ./firstlogonroot.sh
 fi
 # <Base
 # Home>
-             if [ -f /usr/lib/floflis/layers/home/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/home/firstlogonroot.sh ];then
                 echo "- Openning Floflis Home firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/home/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/home && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/home/firstlogonroot.sh && cd /usr/lib/floflis/layers/home && bash ./firstlogonroot.sh
 fi
 # <Home
 # Ultimate>
-             if [ -f /usr/lib/floflis/layers/ultimate/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/ultimate/firstlogonroot.sh ];then
                 echo "- Openning Floflis Ultimate firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/ultimate/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/ultimate && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/ultimate/firstlogonroot.sh && cd /usr/lib/floflis/layers/ultimate && bash ./firstlogonroot.sh
 fi
 # <Ultimate
 # Planetary>
-             if [ -f /usr/lib/floflis/layers/planetary/to-merge_firstlogonroot.sh ];then
+             if [ -f /usr/lib/floflis/layers/planetary/firstlogonroot.sh ];then
                 echo "- Openning Floflis Planetary firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/planetary/to-merge_firstlogonroot.sh && cd /usr/lib/floflis/layers/planetary && bash ./to-merge_firstlogonroot.sh
+                sudo chmod +x /usr/lib/floflis/layers/planetary/firstlogonroot.sh && cd /usr/lib/floflis/layers/planetary && bash ./firstlogonroot.sh
 fi
 # <Planetary
 fi          
