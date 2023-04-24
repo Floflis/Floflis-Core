@@ -20,6 +20,7 @@ Terminal=false
 ENDOFFILE
 sudo chmod -R a+rwX /home/${flouser}/.config/autostart && sudo chown ${flouser}:${flouser} /home/${flouser}/.config/autostart
 sudo chown ${flouser}:${flouser} /home/${flouser}/.local/share/gvfs-metadata/home*
+sudo chown ${flouser}:${flouser} /home/${flouser}/.local/share/gvfs-metadata/home
 
 # knows if upper layers are present, and install their firstlogonroot
           if [ -e /usr/lib/floflis/layers/soil ] || [ -e /usr/lib/floflis/layers/server ]
