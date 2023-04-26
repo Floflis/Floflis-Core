@@ -71,4 +71,4 @@ fi
 fi          
 
 echo "- Cleanning install..."
-rm -rf firstlogonroot.sh
+rm -f /home/firstlogonroot.sh
