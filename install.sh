@@ -235,7 +235,7 @@ fi
 #- task: if Floflis ISO/Cubic, automatically install ethereal
 
 echo "- Installing programs..."
-$maysudo apt-get install aria2
+$maysudo apt-get install aria2 dateutils
 
 #echo "- Updating your Linux distro..."
 #$maysudo apt-get update && $maysudo apt-get upgrade && $maysudo apt autoremove
