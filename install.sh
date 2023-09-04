@@ -260,6 +260,25 @@ $maysudo apt-get autoclean
 #-from https://elias.praciano.com/2014/08/apt-get-quais-as-diferencas-entre-autoremove-autoclean-e-clean/
 $maysudo apt --fix-broken install
 
+#rmv previous kernel
+#Cleanup old kernel versions
+#Find a list of all currently installed kernel versions. An easy way to do this is to list the config files in the /boot folder:
+#-
+#ls -r /boot/config-*
+#-
+#This will provide a list. For each instance make a note of that version number. Then, list all linux packages:
+#-
+#dpkg --list | grep -i "linux-"
+#-
+#Then purge all the packages with old version numbers. IconsPage/warning.png Do not purge packages with the most current kernel number:
+#-
+#apt-get purge <packages>
+#-
+#For example:
+#-
+#apt-get purge linux-headers-5.15.0-43 linux-headers-5.15.0-43-generic linux-image-5.15.0-43-generic linux-modules-5.15.0-43-generic linux-modules-extra-5.15.0-43-generic
+$maysudo apt-get purge linux-headers-6.2.0-27 linux-headers-6.2.0-27-generic linux-image-6.2.0-27-generic linux-modules-6.2.0-27-generic linux-modules-extra-6.2.0-27-generic
+
 echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 
@@ -337,7 +356,7 @@ fi
    $maysudo systemctl enable firstboot
    $maysudo systemd enable firstboot
 
-   echo "- Installing Floflis Central..."
+   echo "- Installing Floflis Central CLI..."
    $maysudo mv /usr/lib/floflis/layers/core/central /usr/bin
    $maysudo chmod 755 /usr/bin/central
    
