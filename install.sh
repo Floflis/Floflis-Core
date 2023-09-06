@@ -76,7 +76,7 @@ then
       rm /1/temp2.txt
       
       if [ -e /usr/local/bin/*antiX* ]; then
-         echo "- This is a antiX-based OS. Updating files..."
+         echo "- This is an antiX-based OS. Updating files..."
          $maysudo cp -f ./include/antiX/cli-installer /usr/local/bin/
          $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
@@ -84,6 +84,18 @@ fi
 echo "Updating apt..."
 $maysudo add-apt-repository universe -y
 $maysudo apt update -y
+
+echo "Installing rmv..."
+cd include/rmv
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/rmv.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo sh ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f shit
+#rm -f .gitmeta
+cd "$SCRIPTPATH"
 
 $maysudo apt-get install git -y
 echo "Installing 01 VCS..."
