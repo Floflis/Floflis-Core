@@ -243,8 +243,8 @@ cd "$SCRIPTPATH"
          echo "Installing Cicada (Bash replacement written in Rust)..."
          $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 /usr/bin/cicada
          chmod +x /usr/bin/cicada
-         echo "Testing if cicada works:"
-         cicada
+         #echo "Testing if cicada works:"
+         #cicada
 fi
 
 #ethereal-2.7.4-linux-arm64.tar.gz
