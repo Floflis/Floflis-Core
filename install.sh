@@ -218,25 +218,18 @@ chmod +x install.sh && $maysudo sh ./install.sh
 sudo apt install curl
 cd "$SCRIPTPATH"
 
-# Install ethereal:
+# Install ethereal-multi:
+cd include/ethereal-multi
+if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/ethereal-multi.git .; fi
+if [ -e .git ]; then git pull; fi
+git checkout -f
+chmod +x install.sh && $maysudo bash ./install.sh
+#rm -f install.sh #use noah to exclude everything except .git
+#rm -f README.md
+#rm -f shit
+#rm -f .gitmeta
+cd "$SCRIPTPATH"
 
-#      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
-#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
-#         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
-#         echo "Testing if IPFS works:"
-#         ipfs
-#fi
-      if [ "$flofarch" = "amd64" ]; then
-         echo "Installing ethereal..."
-         tar -xzf include/ethereal/ethereal-2.8.7-linux-amd64.tar.gz
-         $maysudo mv ethereal /usr/bin
-         chmod +x /usr/bin/ethereal
-         echo "Testing if ethereal works:"
-         ethereal
-fi
 #ethereal-2.7.4-linux-arm64.tar.gz
 # <---- future task: check against .sha256 file; floflis icons: icon for .sha256 files and file handler for comparing
 
