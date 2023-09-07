@@ -230,6 +230,23 @@ chmod +x install.sh && $maysudo bash ./install.sh
 #rm -f .gitmeta
 cd "$SCRIPTPATH"
 
+#      if [ "$flofarch" = "386" ]; then
+#         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
+#         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
+#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo rm -rf go-ipfs
+#         chmod +x /usr/bin/ipfs
+#         echo "Testing if IPFS works:"
+#         ipfs
+#fi
+      if [ "$flofarch" = "amd64" ]; then
+         echo "Installing Cicada (Bash replacement written in Rust)..."
+         $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 /usr/bin/cicada
+         chmod +x /usr/bin/cicada
+         echo "Testing if cicada works:"
+         cicada
+fi
+
 #ethereal-2.7.4-linux-arm64.tar.gz
 # <---- future task: check against .sha256 file; floflis icons: icon for .sha256 files and file handler for comparing
 
