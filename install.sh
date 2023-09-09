@@ -81,15 +81,18 @@ then
          $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
 fi
 
-apt update -y
-apt --fix-broken install -y
-apt update -y
+$maysudo apt update -y
+$maysudo apt --fix-broken install -y
+$maysudo apt update -y
 
 echo "Updating apt..."
 $maysudo add-apt-repository universe -y
 $maysudo apt update -y
 
 $maysudo apt-get install git -y
+$maysudo apt update -y
+$maysudo apt --fix-broken install -y
+$maysudo apt update -y
 echo "Installing 01 VCS..."
 cd include/01
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
