@@ -89,6 +89,8 @@ echo "Updating apt..."
 $maysudo add-apt-repository universe -y
 $maysudo apt update -y
 
+$maysudo rm /var/cache/apt
+$maysudo mkdir -p /var/cache/apt/archives/partial
 $maysudo apt-get install git -y
 $maysudo apt update -y
 $maysudo apt --fix-broken install -y
