@@ -31,6 +31,10 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
+if [ -e /tmp/cubicmode ]; then
+maysudo=""
+fi
+
 ok="Ok."
 invalid="Please enter a valid input"
 
