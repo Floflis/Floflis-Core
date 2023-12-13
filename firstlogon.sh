@@ -1,4 +1,18 @@
 #!/bin/bash
+
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+export PREFIX
+fi
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+
+flouser=$(logname) # considers as main user, the first logged user after first boot 💃
+export flouser
+
 cat << "EOF" 
 -. .-.   .-. .-.   .-. .-.   .
   \   \ /   \   \ /   \   \ /
@@ -15,8 +29,6 @@ cat << "EOF"
 
                   Welcome to Floflis!
 EOF
-
-flouser=$(logname) # considers as main user, the first logged user after first boot 💃
 
 # Core>
    if [ -e /usr/lib/floflis/layers/dna/floflis ]
