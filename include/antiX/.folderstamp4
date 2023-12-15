@@ -1,0 +1,62 @@
+This folder: /media/daniella/B/git/Floflis/Floflis/Floflis-DNA/layers/core/include/antiX
+
+  File: ./.folderstamp
+  Size: 89        	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 4392054     Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:58:02.368195700 -0300
+Modify: 2023-12-14 16:58:02.372195700 -0300
+Change: 2023-12-14 16:58:02.372195700 -0300
+ Birth: 2023-12-14 16:58:02.368195700 -0300
+IPFS hash: QmVqdiSnChAZ8hY5Dou24E3hfnSCGHTe9bZjUAPQURQpA9
+------------------------------
+  File: ./.folderstamp1
+  Size: 1443      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 4392050     Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:57:47.155989500 -0300
+Modify: 2023-12-14 16:57:40.371897000 -0300
+Change: 2023-12-14 16:57:44.207949400 -0300
+ Birth: 2023-12-14 16:57:40.171894200 -0300
+IPFS hash: QmfEQLzBwCtkkku5ED1i8o6BiUMQuhh72SAVEfxwP9rAcH
+------------------------------
+  File: ./.folderstamp2
+  Size: 1971      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 4392051     Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:57:47.095988700 -0300
+Modify: 2023-12-14 16:57:47.303991500 -0300
+Change: 2023-12-14 16:57:50.616036600 -0300
+ Birth: 2023-12-14 16:57:47.023987700 -0300
+IPFS hash: QmW3pZoyTWgLazBTNyvEuEAL6yDgJkFukGzSBnB1gxTCmE
+------------------------------
+  File: ./.folderstamp3
+  Size: 1857      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 4392053     Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:57:56.248113000 -0300
+Modify: 2023-12-14 16:57:56.512116500 -0300
+Change: 2023-12-14 16:57:59.384155400 -0300
+ Birth: 2023-12-14 16:57:56.248113000 -0300
+IPFS hash: QmdRj5vJhsgdWsEnuEgkuMt2K4erihuGPPUpqXw2LoQfW8
+------------------------------
+  File: ./antiX-cli-cc
+  Size: 18198     	Blocks: 40         IO Block: 4096   regular file
+Device: 8,20	Inode: 954670      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:45:42.478254300 -0300
+Modify: 2019-12-27 21:59:35.447632000 -0300
+Change: 2020-12-10 21:33:42.176446200 -0300
+ Birth: 2020-12-10 21:33:42.158124800 -0300
+IPFS hash: QmRRDYfN8afb8jyWPGke9EgMo78jNuWoJtXi9qTVUNXXL6
+------------------------------
+  File: ./cli-installer
+  Size: 12387     	Blocks: 32         IO Block: 4096   regular file
+Device: 8,20	Inode: 954671      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:57:40.307896100 -0300
+Modify: 2018-11-13 09:06:45.000000000 -0200
+Change: 2020-12-10 21:33:42.230538000 -0300
+ Birth: 2020-12-10 21:33:42.206689700 -0300
+IPFS hash: QmfBGQTcQmnQKNx8VXgLzam8C7MktjUxqRDH8kyQYWHnuq
+------------------------------

@@ -1,0 +1,252 @@
+This folder: /media/daniella/B/git/Floflis/Floflis/Floflis-DNA/layers/core
+
+  File: ./build
+  Size: 4096      	Blocks: 8          IO Block: 4096   directory
+Device: 8,20	Inode: 1029377     Links: 1
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2022-03-10 10:27:19.568516900 -0300
+Modify: 2022-02-09 12:23:22.643311600 -0300
+Change: 2022-02-09 12:23:22.643311600 -0300
+ Birth: 2022-02-08 12:42:13.695862900 -0300
+IPFS hash: 
+------------------------------
+  File: ./central
+  Size: 17658     	Blocks: 40         IO Block: 4096   regular file
+Device: 8,20	Inode: 954956      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:57:10.775488300 -0300
+Modify: 2019-12-10 02:14:44.268212000 -0300
+Change: 2021-11-24 15:14:52.247725400 -0300
+ Birth: 2020-12-10 21:33:58.617516400 -0300
+IPFS hash: QmX9K6XAwRT3Cgf8Z4yxDoLUwsfbQKrnBR8X4SvbuQfNos
+------------------------------
+  File: ./firstboot
+  Size: 5286      	Blocks: 16         IO Block: 4096   regular file
+Device: 8,20	Inode: 1447810     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.319187300 -0300
+Modify: 2022-12-01 21:11:38.357158500 -0300
+Change: 2022-12-01 21:11:38.705408500 -0300
+ Birth: 2022-12-01 21:11:38.340713100 -0300
+IPFS hash: QmRVicpA1RH4M1RYcgqG3RoG7RyTfBmP7V2gJH5eSyaEo6
+------------------------------
+  File: ./firstboot-test.sh
+  Size: 577       	Blocks: 1          IO Block: 4096   regular file
+Device: 8,20	Inode: 918333      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:47:42.069190400 -0300
+Modify: 2022-02-10 10:47:07.668698000 -0300
+Change: 2022-02-10 10:48:47.622110800 -0300
+ Birth: 2022-02-10 10:48:47.620300900 -0300
+IPFS hash: QmPvhwuiKx514dcAjJC51Vm3bVu7nwLQyeuhSZHGf46RH8
+------------------------------
+  File: ./firstlogonroot.sh
+  Size: 3151      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 1042656     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.287201300 -0300
+Modify: 2023-04-25 21:58:22.928092200 -0300
+Change: 2023-04-25 21:58:23.252060600 -0300
+ Birth: 2023-04-25 21:58:22.928092200 -0300
+IPFS hash: QmdcLfVrKRKuPF8oWN6airoFY1FiP68CXeiYirARhmUCNp
+------------------------------
+  File: ./firstlogon.sh
+  Size: 6251      	Blocks: 16         IO Block: 4096   regular file
+Device: 8,20	Inode: 4391957     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-13 20:38:59.032761000 -0300
+Modify: 2023-12-13 20:38:09.432182800 -0300
+Change: 2023-12-13 20:38:09.776186800 -0300
+ Birth: 2023-12-13 20:38:09.424182700 -0300
+IPFS hash: QmPuMmc1eJ8c7rSv8ZnV6Nq49WWa1t4SKpbPrv3NK9uymT
+------------------------------
+  File: ./floflis
+  Size: 461       	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 1442632     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.287201300 -0300
+Modify: 2022-12-01 20:16:41.009023000 -0300
+Change: 2022-12-01 20:16:42.162252200 -0300
+ Birth: 2022-12-01 20:16:41.007631500 -0300
+IPFS hash: QmckHdbYkWE7fftW563hFN8HA9GzXqmyXtarK9BpmhZfNo
+------------------------------
+  File: ./flo-init
+  Size: 44        	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 954954      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:17.913551400 -0300
+Modify: 2019-12-19 10:09:19.602173000 -0300
+Change: 2020-12-10 21:33:58.558297300 -0300
+ Birth: 2020-12-10 21:33:58.553544100 -0300
+IPFS hash: QmYyB5mSDnw3X8YUrzKTYjuMFUW4s63rCFUV3ktB28cMuA
+------------------------------
+  File: ./include
+  Size: 4096      	Blocks: 8          IO Block: 4096   directory
+Device: 8,20	Inode: 954668      Links: 1
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-10-25 18:41:55.019959500 -0300
+Modify: 2023-09-30 19:07:15.416293000 -0300
+Change: 2023-09-30 19:07:15.416293000 -0300
+ Birth: 2020-12-10 21:33:42.121427300 -0300
+IPFS hash: 
+------------------------------
+  File: ./init.sh
+  Size: 60        	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 3142185     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:45:15.261493600 -0300
+Modify: 2023-01-29 19:34:00.446112400 -0300
+Change: 2023-01-29 19:35:59.044172700 -0300
+ Birth: 2023-01-29 19:34:30.571075000 -0300
+IPFS hash: QmZF9Bbwm1GM6qsUe4bTuW9pBVcCPWp8vYPR43QrAr93F3
+------------------------------
+  File: ./install.sh
+  Size: 15729     	Blocks: 32         IO Block: 4096   regular file
+Device: 8,20	Inode: 4230136     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 16:45:19.573616000 -0300
+Modify: 2023-09-12 01:02:36.159483900 -0300
+Change: 2023-09-12 01:02:36.788753200 -0300
+ Birth: 2023-09-12 01:02:36.140522800 -0300
+IPFS hash: QmRziyLFwAYMzW2SvXTSfjxf6FabpPuPeWjSgJzASEDfd4
+------------------------------
+  File: ./modules
+  Size: 0         	Blocks: 0          IO Block: 4096   directory
+Device: 8,20	Inode: 954952      Links: 1
+Access: (0755/drwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-09-01 11:27:13.247665600 -0300
+Modify: 2021-12-08 21:59:08.919405300 -0300
+Change: 2021-12-08 21:59:08.919405300 -0300
+ Birth: 2020-12-10 21:33:58.468762200 -0300
+IPFS hash: 
+------------------------------
+  File: ./modules.sh
+  Size: 136       	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 1442849     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.287201300 -0300
+Modify: 2022-12-01 20:19:11.357972100 -0300
+Change: 2022-12-01 20:19:11.687603700 -0300
+ Birth: 2022-12-01 20:19:11.357365900 -0300
+IPFS hash: QmaqzrvofM3Wr5665GRcSfMKzFNaPXWGF8HXHz3mGGrZB7
+------------------------------
+  File: ./new_patch_at.json
+  Size: 24        	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 1468852     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.319187300 -0300
+Modify: 2022-02-08 13:35:55.494132500 -0300
+Change: 2022-02-08 13:35:55.494132500 -0300
+ Birth: 2022-02-08 13:35:55.488216800 -0300
+IPFS hash: QmQdeG74tujNLVKPjfsy51QSy7ZoCKYYcWbLVH1Zg2UTu7
+------------------------------
+  File: ./postinstall.sh
+  Size: 13        	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 918634      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:47:42.069190400 -0300
+Modify: 2020-12-26 19:34:48.035250100 -0300
+Change: 2022-11-22 12:21:37.381386600 -0300
+ Birth: 2020-12-26 19:34:48.034966200 -0300
+IPFS hash: QmdDJvK3zV3yZeKrCWfm2Vk5AgRTk47EAsBxjp9Rx2ZmhN
+------------------------------
+  File: ./preseed
+  Size: 203       	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 918632      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:47:42.069190400 -0300
+Modify: 2020-12-26 19:26:50.722737600 -0300
+Change: 2020-12-26 19:26:51.052619600 -0300
+ Birth: 2020-12-26 19:26:50.722522700 -0300
+IPFS hash: QmaUUYRof2Vm5vBoWVWc3bESnPkbvh1Dbn88jGj8yTuCTD
+------------------------------
+  File: ./presentation
+  Size: 941       	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 954951      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:17.881565400 -0300
+Modify: 2019-07-15 14:33:24.000000000 -0300
+Change: 2021-01-16 01:21:26.771428000 -0300
+ Birth: 2020-12-10 21:33:58.429764500 -0300
+IPFS hash: QmWxVFyaqve81fjpeyDyvXCwi1ccGy8nR31GChuh2Rkx5r
+------------------------------
+  File: ./README.md
+  Size: 1152      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 1472704     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.359169800 -0300
+Modify: 2023-01-27 20:12:10.144782800 -0300
+Change: 2023-01-27 20:12:10.478939500 -0300
+ Birth: 2023-01-27 20:12:10.143847400 -0300
+IPFS hash: QmZq79A1693zmhoM822aMj81uUgG2HR9aKAxfqxGEtSMtG
+------------------------------
+  File: ./recipe.json
+  Size: 108       	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 954958      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:17.941539100 -0300
+Modify: 2019-12-07 20:00:45.413398000 -0300
+Change: 2020-12-10 21:33:58.712201500 -0300
+ Birth: 2020-12-10 21:33:58.706496700 -0300
+IPFS hash: QmY128DF24joYK4KrMZPnr5VpCHKP7C37N25J7R3gNNokt
+------------------------------
+  File: ./TasksInclude -> /media/daniella/B/git/Floflis/Floflis/Floflis 19/LayersTasks/0. Layers/1-Core
+  Size: 77        	Blocks: 0          IO Block: 4096   symbolic link
+Device: 8,20	Inode: 4392064     Links: 1
+Access: (0777/lrwxrwxrwx)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 19:04:58.501001200 -0300
+Modify: 2023-12-14 17:17:16.008762200 -0300
+Change: 2023-12-14 19:04:58.493001100 -0300
+ Birth: -
+IPFS hash: QmatW8BTCceFdfzLEmHUhmFv8c3T1SrevCBqtNrKs9diR9
+------------------------------
+  File: ./Tasks.txt
+  Size: 2271      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 917207      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:47:42.069190400 -0300
+Modify: 2020-12-27 19:03:58.578777500 -0300
+Change: 2020-12-27 19:03:58.914586500 -0300
+ Birth: 2020-12-27 19:03:58.578547000 -0300
+IPFS hash: QmTE797RWHDj7hE8XYiWxSDJrww3TZPUwgzpXaxjpfdSy3
+------------------------------
+  File: ./testscript.sh
+  Size: 14        	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 917716      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-14 19:05:28.153263100 -0300
+Modify: 2021-11-26 14:40:14.033167300 -0300
+Change: 2021-11-26 14:40:14.376323200 -0300
+ Birth: 2021-11-26 14:40:14.026417600 -0300
+IPFS hash: QmZxeK9ZKMSyRVfLVCttsxMNnP6NP76kWnxfMjGfqG2XSp
+------------------------------
+  File: ./update.json
+  Size: 192       	Blocks: 0          IO Block: 4096   regular file
+Device: 8,20	Inode: 1468945     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.343176800 -0300
+Modify: 2022-02-09 12:19:19.661003700 -0300
+Change: 2022-02-09 12:19:19.661003700 -0300
+ Birth: 2022-02-08 13:37:02.626790800 -0300
+IPFS hash: Qme8mSMamyMA6qJ26ngZQrKMuDpZwdc4JBLQytTMSwwHwn
+------------------------------
+  File: ./update.sh
+  Size: 1813      	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 971288      Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:17.961530400 -0300
+Modify: 2021-01-10 01:18:30.701782100 -0300
+Change: 2021-01-10 14:31:17.123431500 -0300
+ Birth: 2021-01-10 01:18:30.701782100 -0300
+IPFS hash: QmZz9aFuoNQEsFLs4P3ZhLpnEefNMRncqSxvapzDJfCqrB
+------------------------------
+  File: ./updates.sh
+  Size: 726       	Blocks: 8          IO Block: 4096   regular file
+Device: 8,20	Inode: 1468912     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: ( 1000/daniella)   Gid: ( 1000/daniella)
+Access: 2023-12-10 04:48:23.343176800 -0300
+Modify: 2022-02-08 13:35:55.498870400 -0300
+Change: 2022-02-08 13:35:55.498870400 -0300
+ Birth: 2022-02-08 13:35:55.498431500 -0300
+IPFS hash: QmdECL3wcD24Xu89GUKHNC6g7PKviNqsLbP3FiVUSFXN47
+------------------------------

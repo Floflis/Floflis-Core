@@ -3,14 +3,14 @@
 LIB_DIR=/usr/lib/shell
 loc_lib=./lib
 test -e $loc_lib/lib-screen.sh && LIB_DIR=$loc_lib
-if [ -e $LIB_DIR/lib-menu.sh ];then . $LIB_DIR/lib-menu.sh;fi
+. $LIB_DIR/lib-menu.sh
 
-export TEXTDOMAIN="central"
+export TEXTDOMAIN="antiX-cli-cc"
 
 PATH=./bin:$PATH
 
-PLAY_LIST=/usr/share/central/Audio/Classical.m3u
-BOOKMARKS=/usr/share/central/Html/bookmarks.html
+PLAY_LIST=/usr/share/antiX-cli-cc/Audio/Classical.m3u
+BOOKMARKS=/usr/share/antiX-cli-cc/Html/bookmarks.html
 
 YT_DEMO="https://www.youtube.com/watch?v=G8Aw2zzBE-g"   # antiX-16
 YT_DEMO="https://www.youtube.com/watch?v=SghuUOPRi00"   # Removing the Swastikas
@@ -22,32 +22,20 @@ YT_DEMO_3="https://www.youtube.com/watch?v=kTnR90OkNtM" # antiX core install I
 
 YT_DEMO_NUM=4
 
-if [ -e /usr/local/bin/*antiX* ];
-then
-   WALLPAPER_DIR=/usr/share/wallpaper
-else
-   WALLPAPER_DIR=/usr/share/wallpapers
-fi
+WALLPAPER_DIR=/usr/share/wallpaper
 
 main() {
     set_color_scheme light
 
     test -d /etc/live/bin && PATH=$PATH:/etc/live/bin
 
-    exitcommon(){ echo "You don't have lib-screen.sh and/or lib-menu.sh installed in '$LIB_DIR/', so Central CLI can't run without these.";echo -n "Please ask the Support Community here: https://askubuntu.com/";exit 1
-    } #later improve this to detect whats really missing, inspo from there: https://stackoverflow.com/questions/6212219/passing-parameters-to-a-bash-function
-    if [ -e $LIB_DIR/lib-screen.sh ];
-    then
-       if [ -e $LIB_DIR/lib-menu.sh ];then clear;else exitcommon;fi
-    else
-       exitcommon
-fi
+    clear
     #echo  -n "${cyan}Please wait while $ME examines your system ..."
 
     local start_t=$(get_time)
 
-    screen_set title1=$"Floflis Central (CLI)"
-    screen_set title2=$"Don't use this program. It's yet in early development stage - Press: <Enter> to select an option, <b> back to main, <q> to quit, <h> for help"
+    screen_set title1=$"antiX Command-Line Control Centre"
+    screen_set title2=$"Press: <Enter> to select an option, <b> back to main, <q> to quit, <h> for help"
     screen_set title3="$(distro_version)"
 
     screen_set box=-s border=1
@@ -73,15 +61,17 @@ init() {
 
 re_init() {
     screen_init
-    new_menu     main_cc $"Settings"                make_main_menu
+    new_menu     main_cc $"Main Menu"                make_main_menu
     new_menu     live_cc $"antiX Live Commands"      make_live_menu
-    new_menu       av_cc $"YouNet (Free Internet)"    make_av_menu
-    new_menu sys_tool_cc $"Profile, contacts"             make_sys_tool_menu
-    new_menu sys_info_cc $"System Updates"       make_sys_info_menu
+    new_menu       av_cc $"Audio/Visual Commands"    make_av_menu
+    new_menu sys_tool_cc $"System Tools"             make_sys_tool_menu
+    new_menu sys_info_cc $"System Information"       make_sys_info_menu
     new_menu  console_cc $"Console Utilities"        make_console_menu
-    new_menu      net_cc $"Security"    make_net_menu
+    new_menu      net_cc $"Internet Applications"    make_net_menu
     new_menu      off_cc $"Office Applications"      make_off_menu
-    new_menu   config_cc $"Autostart programs"      make_config_menu
+    new_menu   config_cc $"Configuration Files"      make_config_menu
+    
+    new_menu   flo_cc $"More settings: Floflis Central"      make_flocc_menu
 
     if its_alive; then
         new_menu   logout_cc $"Logout / Installer"     make_logout_menu
@@ -108,16 +98,17 @@ key_callback() {
 
 make_main_menu() {
     start_menu_list
-    entry "$(printf "$cyan%s" $"YouNet (Free Internet)")"
-    entry "$(printf "$red%s" $"Security")"
-    entry "$(printf "$magenta%s" $"Profile, contacts")"
-    entry "$(printf "$green%s" $"System Updates")"
-    entry $"Autostart programs"
+    entry $"Audio/Visual menu"
+    entry $"Internet Tools & Apps"
+    entry $"System Tools"
+    entry $"System Information"
+    entry $"Configuration Files"
     entry $"Live System Centre"
 
     in_vt && entry $"Console Utilities"
 
     entry $"Office and Other"
+    entry "$(printf "$blue%s" $"More settings: Floflis Central")"
     if its_alive; then
         entry $"Logout / Install"
     else
@@ -132,14 +123,15 @@ main_cc_on_enter() {
     MAIN_CC_SEL=$sel
 
     case $name in
-           $"YouNet (Free Internet)") select_menu av_cc           ;;
-       $"Security") select_menu net_cc          ;;
-                $"Profile, contacts") select_menu sys_tool_cc     ;;
-          $"System Updates") select_menu sys_info_cc     ;;
-         $"Autostart programs") select_menu config_cc       ;;
+           $"Audio/Visual menu") select_menu av_cc           ;;
+       $"Internet Tools & Apps") select_menu net_cc          ;;
+                $"System Tools") select_menu sys_tool_cc     ;;
+          $"System Information") select_menu sys_info_cc     ;;
+         $"Configuration Files") select_menu config_cc       ;;
           $"Live System Centre") select_menu live_cc         ;;
            $"Console Utilities") select_menu console_cc      ;;
             $"Office and Other") select_menu off_cc          ;;
+            $"More settings: Floflis Central") select_menu flo_cc      ;;
             $"Logout / Install") select_menu logout_cc       ;;
              $"Logout / Reboot") select_menu logout_cc       ;;
                         $"Quit") clear ; exit 0              ;;
@@ -372,6 +364,7 @@ console_cc_cmd() {
 make_net_menu() {
     start_menu_list
     add_cmd ceni             $"Set up wired/wireless"
+    add_cmd pppconfig        $"Set up 2G/3G/4G modems"
     add_cmd ifconfig         $"Show network status"
     add_cmd ping             $"Test if network is connected"
     add_cmd speedtest-cli    $"Test network bandwidth"
@@ -399,6 +392,7 @@ net_cc_cmd() {
            ifconfig) run_cmd -p  $cmd                 ;;
             netstat) run_cmd -ps $cmd -autp           ;;
       speedtest-cli) run_cmd -p  $cmd                 ;;
+          pppconfig) run_cmd -s  $cmd                 ;;
                ceni) run_cmd -s  $cmd                 ;;
         wicd-curses) run_cmd -s  $cmd                 ;;
              netpro) run_cmd -s  $cmd                 ;;
@@ -430,6 +424,24 @@ make_off_menu() {
 
     end_menu_list
     back_to_main_entry
+}
+
+make_flocc_menu() {
+    start_menu_list
+
+    add_cmd more       $"Open Floflis Central for more settings"
+
+    end_menu_list
+    back_to_main_entry
+}
+
+flo_cc_cmd() {
+    local cmd=$1
+    case $cmd in
+             more) run_cmd  floflis-central      ;;
+
+        *)  db_msg "Would do action %s" "$white$cmd"
+    esac
 }
 
 off_cc_cmd() {

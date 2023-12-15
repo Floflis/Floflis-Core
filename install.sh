@@ -392,6 +392,14 @@ fi
    $maysudo systemd enable firstboot
 
    echo "- Installing Floflis Central CLI..."
+   echo "[1/2] Central's Dependencies..."
+   if [ -e /usr/lib/shell ];then $maysudo mkdir /usr/lib/shell;fi
+   $maysudo mv /usr/lib/floflis/layers/core/include/antiX/libs/. /usr/lib/shell
+   #$maysudo mv -r /usr/lib/floflis/layers/core/include/antiX/usr-share/. /usr/share/antiX-cli-cc/
+   if [ -e /usr/share/central ];then $maysudo mkdir /usr/share/central;fi
+   $maysudo rsync -av /usr/lib/floflis/layers/core/include/antiX/usr-share/. /usr/share/central
+   #-
+   echo "[2/2] Central's Executable..."
    $maysudo mv /usr/lib/floflis/layers/core/central /usr/bin
    $maysudo chmod 755 /usr/bin/central
    
