@@ -1,3 +1,14 @@
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+export FLOPREFIX
+fi
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
+
 
 TAB=$(printf "\t")
 
@@ -436,7 +447,7 @@ do_help() {
         db_msg "No help page was set"
         return
     fi
-    do_command man -P /usr/bin/less $HELP_PAGE
+    do_command man -P "$FLOPREFIX"usr/bin/less $HELP_PAGE
 }
 
 do_command() {

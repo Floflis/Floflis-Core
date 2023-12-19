@@ -2,8 +2,12 @@
 
 # Layer: Core
 
-# load definitions & settings
-. /usr/lib/floflis/./config
+#. /usr/lib/floflis/./config
+. "$FLOPREFIX"usr/lib/floflis/./config #expecting $FLOPREFIX has been successfuly imported from DNA's installer
+#export FLOPREFIX
+#fi
+#export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
 
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
@@ -31,7 +35,7 @@ if [ "$is_root" = "false" ]
       maysudo=""
 fi
 
-if [ -e /tmp/cubicmode ]; then
+if [ -e "$FLOPREFIX"tmp/cubicmode ]; then
 maysudo=""
 fi
 
@@ -55,7 +59,7 @@ cat << "EOF"
                   for Floflis Core
 EOF
 echo "- Detecting if Floflis DNA is installed..."
-if [ -e /usr/lib/floflis/layers/dna ]
+if [ -e "$FLOPREFIX"usr/lib/floflis/layers/dna ]
 then
    echo "(✓) Floflis DNA is detected."
    echo "- Upgrading to Floflis Core..."
@@ -79,10 +83,10 @@ then
       rm /1/temp.txt
       rm /1/temp2.txt
       
-      if [ -e /usr/local/bin/*antiX* ]; then
+      if [ -e "$FLOPREFIX"usr/local/bin/*antiX* ]; then
          echo "- This is an antiX-based OS. Updating files..."
-         $maysudo cp -f ./include/antiX/cli-installer /usr/local/bin/
-         $maysudo cp -f ./include/antiX/antiX-cli-cc /usr/local/bin/
+         $maysudo cp -f ./include/antiX/cli-installer "$FLOPREFIX"usr/local/bin/
+         $maysudo cp -f ./include/antiX/antiX-cli-cc "$FLOPREFIX"usr/local/bin/
 fi
 
 $maysudo apt update -y
@@ -144,17 +148,17 @@ filepeace
        
       if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/jq/jq-linux32.tar.gz
-#         $maysudo mv jq /usr/bin
-         $maysudo cp -f include/jq/jq-linux32 /usr/bin/jq
-         chmod +x /usr/bin/jq
+#         $maysudo mv jq "$FLOPREFIX"usr/bin
+         $maysudo cp -f include/jq/jq-linux32 "$FLOPREFIX"usr/bin/jq
+         chmod +x "$FLOPREFIX"usr/bin/jq
          echo "Testing if jq works:"
          jq
 fi
       if [ "$flofarch" = "amd64" ]; then
 #         tar -xzf include/jq/jq-linux64.tar.gz
-#         $maysudo mv jq /usr/bin
-         $maysudo cp -f include/jq/jq-linux64 /usr/bin/jq
-         chmod +x /usr/bin/jq
+#         $maysudo mv jq "$FLOPREFIX"usr/bin
+         $maysudo cp -f include/jq/jq-linux64 "$FLOPREFIX"usr/bin/jq
+         chmod +x "$FLOPREFIX"usr/bin/jq
          echo "Testing if jq works:"
          jq
 fi
@@ -162,17 +166,17 @@ fi
 # Install IPFS:
       if [ "$flofarch" = "386" ]; then
          tar -xzf include/gipfs/include/IPFS/kubo_v0.18.1_linux-amd64.tar.gz
-         sudo mv kubo/ipfs /usr/bin
+         sudo mv kubo/ipfs "$FLOPREFIX"usr/bin
          sudo rm -r kubo
-         chmod +x /usr/bin/ipfs
+         chmod +x "$FLOPREFIX"usr/bin/ipfs
          echo "Testing if IPFS works:"
          ipfs
 fi
       if [ "$flofarch" = "amd64" ]; then
          tar -xzf include/gipfs/include/IPFS/kubo_v0.18.1_linux-amd64.tar.gz
-         sudo mv kubo/ipfs /usr/bin
+         sudo mv kubo/ipfs "$FLOPREFIX"usr/bin
          sudo rm -r kubo
-         chmod +x /usr/bin/ipfs
+         chmod +x "$FLOPREFIX"usr/bin/ipfs
          echo "Testing if IPFS works:"
          ipfs
 fi
@@ -246,16 +250,16 @@ cd "$SCRIPTPATH"
 #      if [ "$flofarch" = "386" ]; then
 #         tar -xzf include/IPFS/go-ipfs_v0.4.22_linux-386.tar.gz
 #         rm -f go-ipfs/install.sh && rm -f go-ipfs/LICENSE && rm -f go-ipfs/README.md
-#         $maysudo mv go-ipfs/ipfs /usr/bin
+#         $maysudo mv go-ipfs/ipfs "$FLOPREFIX"usr/bin
 #         $maysudo rm -rf go-ipfs
-#         chmod +x /usr/bin/ipfs
+#         chmod +x "$FLOPREFIX"usr/bin/ipfs
 #         echo "Testing if IPFS works:"
 #         ipfs
 #fi
       if [ "$flofarch" = "amd64" ]; then
          echo "Installing Cicada (Bash replacement written in Rust)..."
-         $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 /usr/bin/cicada
-         chmod +x /usr/bin/cicada
+         $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 "$FLOPREFIX"usr/bin/cicada
+         chmod +x "$FLOPREFIX"usr/bin/cicada
          #echo "Testing if cicada works:"
          #cicada
 fi
@@ -372,11 +376,11 @@ fi
    
    #task: run this cmd only if detecting ubuntu+chroot
    #removed. is this cmd an requirement? for now, lets experiment with an init script.
-   #$maysudo echo "$(cat /usr/lib/floflis/layers/core/preseed)" >> /preseed/ubuntu.seed && $maysudo rm -f /usr/lib/floflis/layers/core/preseed
-   #$maysudo cp -f /usr/lib/floflis/layers/core/postinstall / && $maysudo rm -f /usr/lib/floflis/layers/core/postinstall
+   #$maysudo echo "$(cat "$FLOPREFIX"usr/lib/floflis/layers/core/preseed)" >> /preseed/ubuntu.seed && $maysudo rm -f "$FLOPREFIX"usr/lib/floflis/layers/core/preseed
+   #$maysudo cp -f "$FLOPREFIX"usr/lib/floflis/layers/core/postinstall / && $maysudo rm -f "$FLOPREFIX"usr/lib/floflis/layers/core/postinstall
    
    echo "- Installing Floflis Core as init program..."
-   $maysudo echo "$(cat /usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f /usr/lib/floflis/layers/core/flo-init
+   $maysudo echo "$(cat "$FLOPREFIX"usr/lib/floflis/layers/core/flo-init)" >> /etc/init.d/flo-init && $maysudo rm -f "$FLOPREFIX"usr/lib/floflis/layers/core/flo-init
    $maysudo chmod +x /etc/init.d/flo-init
    $maysudo update-rc.d flo-init defaults
    $maysudo update-rc.d flo-init enable
@@ -384,7 +388,7 @@ fi
    $maysudo systemd enable flo-init
    
    echo "- Installing Floflis' first boot script..."
-   $maysudo cp -f /usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f /usr/lib/floflis/layers/core/firstboot
+   $maysudo cp -f "$FLOPREFIX"usr/lib/floflis/layers/core/firstboot /etc/init.d && $maysudo rm -f "$FLOPREFIX"usr/lib/floflis/layers/core/firstboot
    $maysudo chmod +x /etc/init.d/firstboot
    $maysudo update-rc.d firstboot defaults
    $maysudo update-rc.d firstboot enable
@@ -393,22 +397,22 @@ fi
 
    echo "- Installing Floflis Central CLI..."
    echo "[1/2] Central's Dependencies..."
-   if [ -e /usr/lib/shell ];then $maysudo mkdir /usr/lib/shell;fi
-   $maysudo mv /usr/lib/floflis/layers/core/include/antiX/libs/. /usr/lib/shell
-   #$maysudo mv -r /usr/lib/floflis/layers/core/include/antiX/usr-share/. /usr/share/antiX-cli-cc/
-   if [ -e /usr/share/central ];then $maysudo mkdir /usr/share/central;fi
-   $maysudo rsync -av /usr/lib/floflis/layers/core/include/antiX/usr-share/. /usr/share/central
+   if [ -e "$FLOPREFIX"usr/lib/shell ];then $maysudo mkdir "$FLOPREFIX"usr/lib/shell;fi
+   $maysudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/include/antiX/libs/. "$FLOPREFIX"usr/lib/shell
+   #$maysudo mv -r "$FLOPREFIX"usr/lib/floflis/layers/core/include/antiX"$FLOPREFIX"usr-share/. "$FLOPREFIX"usr/share/antiX-cli-cc/
+   if [ -e "$FLOPREFIX"usr/share/central ];then $maysudo mkdir "$FLOPREFIX"usr/share/central;fi
+   $maysudo rsync -av "$FLOPREFIX"usr/lib/floflis/layers/core/include/antiX"$FLOPREFIX"usr-share/. "$FLOPREFIX"usr/share/central
    #-
    echo "[2/2] Central's Executable..."
-   $maysudo mv /usr/lib/floflis/layers/core/central /usr/bin
-   $maysudo chmod 755 /usr/bin/central
+   $maysudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/central "$FLOPREFIX"usr/bin
+   $maysudo chmod 755 "$FLOPREFIX"usr/bin/central
    
    echo "- Cleanning install, saving settings..."
    $maysudo apt-get autoremove
    $maysudo apt-get autoclean
    $maysudo apt --fix-broken install
-   $maysudo rm /usr/lib/floflis/layers/core/install.sh
-   $maysudo sed -i 's/core/soil/g' /usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' /usr/lib/floflis/config
+   $maysudo rm "$FLOPREFIX"usr/lib/floflis/layers/core/install.sh
+   $maysudo sed -i 's/core/soil/g' "$FLOPREFIX"usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' "$FLOPREFIX"usr/lib/floflis/config
    
    echo "- Saving settings as JSON..."
    cat > /1/Floflis/system/os.json << ENDOFFILE
@@ -423,7 +427,7 @@ fi
 }
 ENDOFFILE
 
-   . /usr/lib/floflis/./config
+   . "$FLOPREFIX"usr/lib/floflis/./config
 
    contents="$(jq ".name = \"$osname\"" /1/Floflis/system/os.json)" && \
    echo "${contents}" > /1/Floflis/system/os.json

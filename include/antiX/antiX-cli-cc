@@ -1,6 +1,17 @@
 #!/bin/bash
 
-LIB_DIR=/usr/lib/shell
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+export FLOPREFIX
+fi
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
+
+LIB_DIR=/usr"$FLOPREFIX"lib/shell
 loc_lib=./lib
 test -e $loc_lib/lib-screen.sh && LIB_DIR=$loc_lib
 . $LIB_DIR/lib-menu.sh
@@ -9,8 +20,8 @@ export TEXTDOMAIN="antiX-cli-cc"
 
 PATH=./bin:$PATH
 
-PLAY_LIST=/usr/share/antiX-cli-cc/Audio/Classical.m3u
-BOOKMARKS=/usr/share/antiX-cli-cc/Html/bookmarks.html
+PLAY_LIST="$FLOPREFIX"usr/share/antiX-cli-cc/Audio/Classical.m3u
+BOOKMARKS="$FLOPREFIX"usr/share/antiX-cli-cc/Html/bookmarks.html
 
 YT_DEMO="https://www.youtube.com/watch?v=G8Aw2zzBE-g"   # antiX-16
 YT_DEMO="https://www.youtube.com/watch?v=SghuUOPRi00"   # Removing the Swastikas
@@ -22,7 +33,7 @@ YT_DEMO_3="https://www.youtube.com/watch?v=kTnR90OkNtM" # antiX core install I
 
 YT_DEMO_NUM=4
 
-WALLPAPER_DIR=/usr/share/wallpaper
+WALLPAPER_DIR="$FLOPREFIX"usr/share/wallpaper
 
 main() {
     set_color_scheme light
@@ -212,7 +223,7 @@ av_cc_cmd() {
 
 # we could search more if ever needed
 wallpaper() { ls $WALLPAPER_DIR/*.jpg 2>/dev/null ; }
-pdf_file()  { ls /usr/share/cups/data/default-testpage.pdf 2>/dev/null ; }
+pdf_file()  { ls "$FLOPREFIX"usr/share/cups/data/default-testpage.pdf 2>/dev/null ; }
 
 make_sys_tool_menu() {
     start_menu_list
@@ -466,10 +477,10 @@ make_config_menu() {
     its_alive_usb && add_edit $"Live usb BIOS bootloader"  /live/boot-dev/boot/syslinux/syslinux.cfg
     its_alive_usb && add_edit $"Live usb UEFI bootloader"  /live/boot-dev/boot/grub/grub.cfg
 
-    add_edit $"Remaster Exclude List"           /usr/local/share/excludes/general-remaster-exclude.list
-    add_edit $"Snapshot Exclude List"           /usr/local/share/excludes/iso-snapshot-exclude.list
-    add_edit $"Remaster Exclude List 2"         /usr/local/share/excludes/live-remaster-exclude.list
-    add_edit $"Persist Save Exclude List"       /usr/local/share/excludes/persist-save-exclude.list
+    add_edit $"Remaster Exclude List"           "$FLOPREFIX"usr/local/share/excludes/general-remaster-exclude.list
+    add_edit $"Snapshot Exclude List"           "$FLOPREFIX"usr/local/share/excludes/iso-snapshot-exclude.list
+    add_edit $"Remaster Exclude List 2"         "$FLOPREFIX"usr/local/share/excludes/live-remaster-exclude.list
+    add_edit $"Persist Save Exclude List"       "$FLOPREFIX"usr/local/share/excludes/persist-save-exclude.list
 
     end_menu_list
     back_to_main_entry
@@ -479,10 +490,10 @@ config_cc_cmd() {
     local cmd=$1
     case $cmd in
 
-        general-remaster-exclude.list) edit_file -s /usr/local/share/excludes/general-remaster-exclude.list  ;;
-            iso-snapshot-exclude.list) edit_file -s /usr/local/share/excludes/iso-snapshot-exclude.list      ;;
-           live-remaster-exclude.list) edit_file -s /usr/local/share/excludes/live-remaster-exclude.list     ;;
-            persist-save-exclude.list) edit_file -s /usr/local/share/excludes/persist-save-exclude.list      ;;
+        general-remaster-exclude.list) edit_file -s "$FLOPREFIX"usr/local/share/excludes/general-remaster-exclude.list  ;;
+            iso-snapshot-exclude.list) edit_file -s "$FLOPREFIX"usr/local/share/excludes/iso-snapshot-exclude.list      ;;
+           live-remaster-exclude.list) edit_file -s "$FLOPREFIX"usr/local/share/excludes/live-remaster-exclude.list     ;;
+            persist-save-exclude.list) edit_file -s "$FLOPREFIX"usr/local/share/excludes/persist-save-exclude.list      ;;
 
                fstab) edit_file -s /etc/fstab          ;;
            xorg.conf) edit_file -s /etc/X11/xorg.conf  ;;

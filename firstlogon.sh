@@ -6,9 +6,10 @@ then
 . /data/data/com.termux/files/usr/lib/floflis/./config
 else
 . /usr/lib/floflis/./config
-export PREFIX
+export FLOPREFIX
 fi
 export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
 
 flouser=$(logname) # considers as main user, the first logged user after first boot 💃
 export flouser
@@ -31,9 +32,9 @@ cat << "EOF"
 EOF
 
 # Core>
-   if [ -e /usr/lib/floflis/layers/dna/floflis ]
+   if [ -e "$FLOPREFIX"usr/lib/floflis/layers/dna/floflis ]
    then
-      if [ -e /usr/lib/floflis/layers/core ]
+      if [ -e "$FLOPREFIX"usr/lib/floflis/layers/core ]
       then
          echo "Getting and storing username..."
 #         flouser=$(echo ~ | awk -F/ '{print $NF}')
@@ -48,7 +49,7 @@ EOF
 ENDOFFILE
          contents="$(jq ".name = \"$flouser\"" /1/config/user.json)" && \
          echo "${contents}" > /1/config/user.json
-#         sudo sed -i "s/user="blank"/user="${flouser}"/g" /usr/lib/floflis/config
+#         sudo sed -i "s/user="blank"/user="${flouser}"/g" "$FLOPREFIX"usr/lib/floflis/config
          echo "Done!"
 fi
 fi
@@ -57,7 +58,7 @@ fi
 # Install SSH:
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
-if [ ! -e /usr/lib/floflis/layers/server ]
+if [ ! -e "$FLOPREFIX"usr/lib/floflis/layers/server ]
 then
    echo "Don't install SSH if you think BIOS is a fossil fuel. And never use SSH to remotely access your devices in a public network, such as mobile. SSH can be useful for securer (than HTTP) downloads IF YOU ARE TECHY-SAVY AND UNDERSTAND ABOUT SSH. Estimated 1MB to download/6 MB installed."
    echo "Do you want to install SSH? [Y/n]"
@@ -86,11 +87,11 @@ done
 
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
-cd /home/${flouser}/.config/autostart
+cd "$FLOPREFIX"home/${flouser}/.config/autostart
 sudo chmod +x IPFS.sh
-sudo chown ${flouser}:${flouser} /home/${flouser}/.config/autostart/IPFS.sh
-mv /home/${flouser}/.config/autostart/IPFS.sh /home/${flouser}/.config/autostart/IPFS.desktop
-sudo chown ${flouser}:${flouser} /home/${flouser}/.config/autostart/IPFS.desktop
+sudo chown ${flouser}:${flouser} "$FLOPREFIX"home/${flouser}/.config/autostart/IPFS.sh
+mv "$FLOPREFIX"home/${flouser}/.config/autostart/IPFS.sh "$FLOPREFIX"home/${flouser}/.config/autostart/IPFS.desktop
+sudo chown ${flouser}:${flouser} "$FLOPREFIX"home/${flouser}/.config/autostart/IPFS.desktop
 
 echo "- Initializing IPFS..."
 ipfs init
@@ -98,63 +99,63 @@ echo "- To start IPFS service, open a new term window and type 'ipfs daemon', or
 fi
 
 # knows if upper layers are present, and install their firstlogon
-          if [ -e /usr/lib/floflis/layers/soil ] || [ -e /usr/lib/floflis/layers/server ]
+          if [ -e "$FLOPREFIX"usr/lib/floflis/layers/soil ] || [ -e "$FLOPREFIX"usr/lib/floflis/layers/server ]
           then
              echo "- Upper layers are here. Detecting..."
 # Server>
-             if [ -f /usr/lib/floflis/layers/server/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/server/firstlogon.sh ];then
              echo "- Openning Floflis Server firstlogon installer..."
-             sudo chmod +x /usr/lib/floflis/layers/server/firstlogon.sh && cd /usr/lib/floflis/layers/server && bash ./firstlogon.sh
+             sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/server/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/server && bash ./firstlogon.sh
 fi
 # <Server
 # Soil>
-             if [ -f /usr/lib/floflis/layers/soil/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/soil/firstlogon.sh ];then
                 echo "- Openning Floflis Soil firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/soil/firstlogon.sh && cd /usr/lib/floflis/layers/soil && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/soil/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/soil && bash ./firstlogon.sh
 fi
 # <Soil
 # Grass>
-             if [ -f /usr/lib/floflis/layers/grass/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/grass/firstlogon.sh ];then
                 echo "- Openning Floflis Grass firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/grass/firstlogon.sh && cd /usr/lib/floflis/layers/grass && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/grass/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/grass && bash ./firstlogon.sh
 fi
 # <Grass
 # Base>
-             if [ -f /usr/lib/floflis/layers/base/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/base/firstlogon.sh ];then
                 echo "- Openning Floflis Base firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/base/firstlogon.sh && cd /usr/lib/floflis/layers/base && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/base/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/base && bash ./firstlogon.sh
 fi
 # <Base
 # Home>
-             if [ -f /usr/lib/floflis/layers/home/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers"$FLOPREFIX"home/firstlogon.sh ];then
                 echo "- Openning Floflis Home firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/home/firstlogon.sh && cd /usr/lib/floflis/layers/home && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers"$FLOPREFIX"home/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/home && bash ./firstlogon.sh
 fi
 # <Home
 # Ultimate>
-             if [ -f /usr/lib/floflis/layers/ultimate/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/ultimate/firstlogon.sh ];then
                 echo "- Openning Floflis Ultimate firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/ultimate/firstlogon.sh && cd /usr/lib/floflis/layers/ultimate && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/ultimate/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/ultimate && bash ./firstlogon.sh
 fi
 # <Ultimate
 # Planetary>
-             if [ -f /usr/lib/floflis/layers/planetary/firstlogon.sh ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstlogon.sh ];then
                 echo "- Openning Floflis Planetary firstlogon installer..."
-                sudo chmod +x /usr/lib/floflis/layers/planetary/firstlogon.sh && cd /usr/lib/floflis/layers/planetary && bash ./firstlogon.sh
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/planetary && bash ./firstlogon.sh
 fi
 # <Planetary
 fi          
 
 echo "- Cleanning install..."
-sudo rm -rf /home/firstlogon.sh
+sudo rm -rf "$FLOPREFIX"home/firstlogon.sh
 sudo rm -rf ${flouser}/.config/autostart/firstlogon.desktop
-sudo chmod -R a+rwX /home/${flouser} && sudo chown ${flouser}:${flouser} /home/${flouser}
+sudo chmod -R a+rwX "$FLOPREFIX"home/${flouser} && sudo chown ${flouser}:${flouser} "$FLOPREFIX"home/${flouser}
 
 cd /home
 for D in `find . -mindepth 1 -maxdepth 1 -type d`
 do
    pure=$(echo "${D}" | tr -d "/" | tr -d ".")
-   rm -f /home/$pure/.config/autostart/firstlogon.desktop
+   rm -f "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.desktop
 done
 
 echo "(✓) Floflis has been successfully installed! You can now use it :)"

@@ -8,6 +8,17 @@
 # Short-Description: Start firstboot script
 ### END INIT INFO
 
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+export FLOPREFIX
+fi
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
+
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" = "/cow" ]; then
    exit
 fi
@@ -24,10 +35,12 @@ else
        then
           #Put here your initialization cmds
           echo "This is the first boot."
-          sudo mv /usr/lib/floflis/layers/core/firstlogon.sh /home
-          sudo mv /usr/lib/floflis/layers/core/firstlogonroot.sh /home
-          sudo chmod +x /home/firstlogon.sh
-          sudo chmod +x /home/firstlogonroot.sh
+          if [[ $(echo $PREFIX | grep -o "com.termux") != "com.termux" ]];
+            then
+              sudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/firstlogon.sh /home
+              sudo mv "$FLOPREFIX"usr/lib/floflis/layers/core/firstlogonroot.sh /home
+              sudo chmod +x "$FLOPREFIX"home/firstlogon.sh
+              sudo chmod +x "$FLOPREFIX"home/firstlogonroot.sh
           cd /home
           for D in `find . -mindepth 1 -maxdepth 1 -type d`
           do
@@ -36,7 +49,7 @@ else
              if [ ! -e .config ]; then mkdir .config; fi
              if [ ! -e .config/autostart ]; then mkdir .config/autostart; fi
 #             cd .config/autostart
-             cat > /home/$pure/.config/autostart/firstlogon.sh << ENDOFFILE
+             cat > "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh << ENDOFFILE
 [Desktop Entry]
 Type=Application
 Exec=gnome-terminal --tab --title="Welcome to Floflis! 👭" -- /bin/sh -c 'cd /home; sh ./firstlogon.sh; exec bash'
@@ -52,65 +65,68 @@ StartupNotify=true
 Terminal=false
 
 ENDOFFILE
-             sudo chmod -R a+rwX /home/$pure/.config/autostart && sudo chown $pure:$pure /home/$pure/.config/autostart
-             sudo chown $pure:$pure /home/$pure/.local/share/gvfs-metadata/home*
-             sudo chmod +x /home/$pure/.config/autostart/firstlogon.sh
-             sudo chown $pure:$pure /home/$pure/.config/autostart/firstlogon.sh
+             sudo chmod -R a+rwX "$FLOPREFIX"home/$pure/.config/autostart && sudo chown $pure:$pure "$FLOPREFIX"home/$pure/.config/autostart
+             sudo chown $pure:$pure "$FLOPREFIX"home/$pure/.local/share/gvfs-metadata/home*
+             sudo chmod +x "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh
+             sudo chown $pure:$pure "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh
 #             cd .config/autostart
-             sudo mv /home/$pure/.config/autostart/firstlogon.sh /home/$pure/.config/autostart/firstlogon.desktop
-             sudo chown $pure:$pure /home/$pure/.config/autostart/firstlogon.desktop
+             sudo mv "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.desktop
+             sudo chown $pure:$pure "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.desktop
 #             cd ..
 #             cd ..
+            else
+              : #no-op cmd, thanks to https://stackoverflow.com/a/17583599
+          fi
              echo "- Cleanning install..."
-             sudo rm -rf /home/$pure/.config/autostart/firstlogon.sh
+             if [ -e "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh ]; then sudo rm -rf "$FLOPREFIX"home/$pure/.config/autostart/firstlogon.sh; fi
              cd ..
              sudo chmod -R a+rwX ${D} && sudo chown $pure:$pure ${D}
 done
           cd
 # knows if upper layers are present, and install their firstboot
-          if [ -e /usr/lib/floflis/layers/soil ] || [ -e /usr/lib/floflis/layers/server ]
+          if [ -e "$FLOPREFIX"usr/lib/floflis/layers/soil ] || [ -e "$FLOPREFIX"usr/lib/floflis/layers/server ]
           then
              echo "- Upper layers are here. Detecting..."
 # Server>
-             if [ -f /usr/lib/floflis/layers/server/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/server/firstboot ];then
              echo "- Openning Floflis Server firstboot installer..."
-             sudo chmod +x /usr/lib/floflis/layers/server/firstboot && cd /usr/lib/floflis/layers/server && sh ./firstboot
+             sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/server/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/server && sh ./firstboot
 fi
 # <Server
 # Soil>
-             if [ -f /usr/lib/floflis/layers/soil/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/soil/firstboot ];then
                 echo "- Openning Floflis Soil firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/soil/firstboot && cd /usr/lib/floflis/layers/soil && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/soil/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/soil && sh ./firstboot
 fi
 # <Soil
 # Grass>
-             if [ -f /usr/lib/floflis/layers/grass/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/grass/firstboot ];then
                 echo "- Openning Floflis Grass firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/grass/firstboot && cd /usr/lib/floflis/layers/grass && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/grass/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/grass && sh ./firstboot
 fi
 # <Grass
 # Base>
-             if [ -f /usr/lib/floflis/layers/base/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/base/firstboot ];then
                 echo "- Openning Floflis Base firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/base/firstboot && cd /usr/lib/floflis/layers/base && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/base/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/base && sh ./firstboot
 fi
 # <Base
 # Home>
-             if [ -f /usr/lib/floflis/layers/home/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers"$FLOPREFIX"home/firstboot ];then
                 echo "- Openning Floflis Home firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/home/firstboot && cd /usr/lib/floflis/layers/home && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers"$FLOPREFIX"home/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/home && sh ./firstboot
 fi
 # <Home
 # Ultimate>
-             if [ -f /usr/lib/floflis/layers/ultimate/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/ultimate/firstboot ];then
                 echo "- Openning Floflis Ultimate firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/ultimate/firstboot && cd /usr/lib/floflis/layers/ultimate && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/ultimate/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/ultimate && sh ./firstboot
 fi
 # <Ultimate
 # Planetary>
-             if [ -f /usr/lib/floflis/layers/planetary/firstboot ];then
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstboot ];then
                 echo "- Openning Floflis Planetary firstboot installer..."
-                sudo chmod +x /usr/lib/floflis/layers/planetary/firstboot && cd /usr/lib/floflis/layers/planetary && sh ./firstboot
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/planetary && sh ./firstboot
 fi
 # <Planetary
 fi

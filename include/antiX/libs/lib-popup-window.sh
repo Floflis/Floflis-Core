@@ -1,7 +1,18 @@
-# This prevents gtk2 themes from interfering with Pango colors
-export GTK2_RC_FILES=/usr/share/themes/Default/gtk-2.0-key/gtkrc
+# load definitions & settings ---->
+if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+then
+. /data/data/com.termux/files/usr/lib/floflis/./config
+else
+. /usr/lib/floflis/./config
+export FLOPREFIX
+fi
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+# <---- load definitions & settings
 
-ANTIX_IMAGE="/usr/local/lib/antiX/antiX-logo.png"
+# This prevents gtk2 themes from interfering with Pango colors
+export GTK2_RC_FILES="$FLOPREFIX"usr/share/themes/Default/gtk-2.0-key/gtkrc
+
+ANTIX_IMAGE=""$FLOPREFIX"usr/local"$FLOPREFIX"lib/antiX/antiX-logo.png"
 
 MIN_WIDTH=80
 

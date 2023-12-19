@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # update
-if [ -f /usr/lib/floflis/layers/core/modules/update ]
+if [ -f "$FLOPREFIX"usr/lib/floflis/layers/core/modules/update ]
 then
-    . /usr/lib/floflis/layers/core/modules/./update
+    . "$FLOPREFIX"usr/lib/floflis/layers/core/modules/./update
 fi
