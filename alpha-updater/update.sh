@@ -2,6 +2,9 @@
 
 rocketlaunch_dir=`pwd` #from https://unix.stackexchange.com/a/52919/470623
 
+export FLOPREFIX
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+
 # would detect fakeroot 
 #for path in ${LD_LIBRARY_PATH//:/ }; do
 #   if [[ "$path" == *libfakeroot ]]
@@ -24,6 +27,9 @@ if [ "$is_root" = "false" ]
    else
       maysudo=""
 fi
+
+if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
+if [[ $flofmach == "Termux" ]]; then maysudo="";fi
 
 echo "Downloading updates cache (Core)..."
 git pull origin main
@@ -78,49 +84,49 @@ nextupdate="$currentupdate" #no need to raise anymore after loop stopped. this i
 # Server>
              if [ -f ../../../server/update.sh ];then
              echo "- Openning Floflis Server updates installer..."
-             sudo chmod +x ../../../server/alpha-updater/update.sh && cd ../../../server/alpha-updater && bash ./update.sh
+             $maysudo chmod +x ../../../server/alpha-updater/update.sh && cd ../../../server/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Server
 # Soil>
              if [ -f ../../../soil/update.sh ];then
                 echo "- Openning Floflis Soil updates installer..."
-                sudo chmod +x ../../../soil/alpha-updater/update.sh && cd ../../../soil/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../soil/alpha-updater/update.sh && cd ../../../soil/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Soil
 # Grass>
              if [ -f ../../../grass/update.sh ];then
                 echo "- Openning Floflis Grass updates installer..."
-                sudo chmod +x ../../../grass/alpha-updater/update.sh && cd ../../../grass/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../grass/alpha-updater/update.sh && cd ../../../grass/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Grass
 # Base>
              if [ -f ../../../base/update.sh ];then
                 echo "- Openning Floflis Base updates installer..."
-                sudo chmod +x ../../../base/alpha-updater/update.sh && cd ../../../base/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../base/alpha-updater/update.sh && cd ../../../base/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Base
 # Home>
              if [ -f ../../../home/update.sh ];then
                 echo "- Openning Floflis Home updates installer..."
-                sudo chmod +x ../../../home/alpha-updater/update.sh && cd ../../../home/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../home/alpha-updater/update.sh && cd ../../../home/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Home
 # Ultimate>
              if [ -f ../../../ultimate/update.sh ];then
                 echo "- Openning Floflis Ultimate updates installer..."
-                sudo chmod +x ../../../ultimate/alpha-updater/update.sh && cd ../../../ultimate/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../ultimate/alpha-updater/update.sh && cd ../../../ultimate/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Ultimate
 # Planetary>
              if [ -f ../../../planetary/update.sh ];then
                 echo "- Openning Floflis Planetary updates installer..."
-                sudo chmod +x ../../../planetary/alpha-updater/update.sh && cd ../../../planetary/alpha-updater && bash ./update.sh
+                $maysudo chmod +x ../../../planetary/alpha-updater/update.sh && cd ../../../planetary/alpha-updater && bash ./update.sh
                 cd "$rocketlaunch_dir"
 fi
 # <Planetary

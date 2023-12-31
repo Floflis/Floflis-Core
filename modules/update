@@ -6,6 +6,9 @@ if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
    echo "   update                      Updates Floflis"
 fi
 
+export FLOPREFIX
+export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+
 # would detect fakeroot 
 #for path in ${LD_LIBRARY_PATH//:/ }; do
 #   if [[ "$path" == *libfakeroot ]]
@@ -28,6 +31,9 @@ if [ "$is_root" = "false" ]
    else
       maysudo=""
 fi
+
+if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
+if [[ $flofmach == "Termux" ]]; then maysudo="";fi
 
 if [ "$1" = "update" ] || [ "$1" = "updt" ] || [ "$1" = "next" ] || [ "$1" = "up" ]; then
 $maysudo bash /usr/lib/floflis/layers/core/alpha-updater/update.sh
