@@ -93,8 +93,8 @@ $maysudo apt update -y
 
 if [[ $flofmach == "Termux" ]]; then
 echo "Installing nu shell..."
-apt install nushell #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
-apt install openssl
+apt install nushell -y #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
+apt install openssl -y
 apt upgrade
 fi
 
@@ -112,7 +112,7 @@ $maysudo apt update -y
 $maysudo apt --fix-broken install -y
 $maysudo apt update -y
 
-$maysudo apt-get install -y testdisk #Need to get 405 kB of archives. After this operation, 1.463 kB of additional disk space will be used.
+$maysudo apt-get install testdisk -y #Need to get 405 kB of archives. After this operation, 1.463 kB of additional disk space will be used.
 
 echo "Installing 01 VCS..."
 cd include/01
