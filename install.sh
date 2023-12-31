@@ -266,13 +266,33 @@ cd "$SCRIPTPATH"
 #         echo "Testing if IPFS works:"
 #         ipfs
 #fi
-      if [ "$flofarch" = "amd64" ]; then
-         echo "Installing Cicada (Bash replacement written in Rust)..."
-         $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 "$FLOPREFIX"usr/bin/cicada
-         chmod +x "$FLOPREFIX"usr/bin/cicada
-         #echo "Testing if cicada works:"
-         #cicada
+if [ "$flofarch" = "amd64" ]; then
+   echo "Installing Cicada (Bash replacement written in Rust)..."
+   $maysudo cp -f include/cicada/cicada-x86_64-unknown-linux-gnu-0.9.38 "$FLOPREFIX"usr/bin/cicada
 fi
+#-
+if [ "$flofmach" = "Mac" ]; then
+if [ "$flofarch" = "arm64" ]; then
+   echo "Installing Cicada (Bash replacement written in Rust)..."
+   $maysudo cp -f include/cicada/cicada-aarch64-apple-darwin-0.9.38 "$FLOPREFIX"usr/bin/cicada
+fi
+fi
+#-
+if [ "$flofmach" = "Linux" ]; then
+if [ "$flofarch" = "arm64" ]; then
+   echo "Installing Cicada (Bash replacement written in Rust)..."
+   $maysudo cp -f include/cicada/cicada-aarch64-unknown-linux-gnu-0.9.38 "$FLOPREFIX"usr/bin/cicada
+fi
+fi
+#-
+if [ "$flofarch" = "armv7l" ]; then
+   echo "Installing Cicada (Bash replacement written in Rust)..."
+   $maysudo cp -f include/cicada/cicada-armv7-unknown-linux-gnueabihf-0.9.38 "$FLOPREFIX"usr/bin/cicada
+fi
+#-
+if [ -e "$FLOPREFIX"usr/bin/cicada ]; then chmod +x "$FLOPREFIX"usr/bin/cicada; fi
+#echo "Testing if cicada works:"
+#cicada
 
 #ethereal-2.7.4-linux-arm64.tar.gz
 # <---- future task: check against .sha256 file; floflis icons: icon for .sha256 files and file handler for comparing
