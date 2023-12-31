@@ -326,9 +326,10 @@ $maysudo apt --fix-broken install
 $maysudo apt-get purge linux-headers-6.2.0-27 linux-headers-6.2.0-27-generic linux-image-6.2.0-27-generic linux-modules-6.2.0-27-generic linux-modules-extra-6.2.0-27-generic
 
 echo "- Installing the broken packages, efibootmgr and grub..."
-$maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
+$maysudo apt-get install efibootmgr
+if [ "$flofarch" = "amd64" ]; then $maysudo apt-get install grub-efi-amd64-bin grub-efi-amd64-signed;fi
 
-       if [ ! -e /1/config ]; then echo "Creating settings folder...";mkdir /1/config; fi
+if [ ! -e /1/config ]; then echo "Creating settings folder...";mkdir /1/config; fi
 
 #$maysudo cat > /1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
@@ -346,8 +347,8 @@ $maysudo apt-get install efibootmgr grub-efi-amd64-bin grub-efi-amd64-signed
 #"}
 #ENDOFFILE
 
-    if [ ! -e /1/Floflis ]; then echo "Creating sys folder...";mkdir /1/Floflis; fi
-    if [ ! -e /1/Floflis/system ]; then mkdir /1/Floflis/system;echo ""; fi
+if [ ! -e /1/Floflis ]; then echo "Creating sys folder...";mkdir /1/Floflis; fi
+if [ ! -e /1/Floflis/system ]; then mkdir /1/Floflis/system;echo ""; fi
     #tar xfvz 
 fi
 
