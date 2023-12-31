@@ -1,0 +1,3 @@
+- Compare "$(cat lastupdate.txt)" with "$latestupdate", then loop into all NEW updates
+- Run the update {number}.sh, then go to the layer's install.sh
+- When Core begin updating itself, it goes to upgrade all other upper layers found (mimick Core's firstboot multi-layer calls)

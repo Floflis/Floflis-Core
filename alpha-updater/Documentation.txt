@@ -1,0 +1,1 @@
+Each layer is responsible for updating itself; except DNA and Core: Core doesn't only updates itself but it does also update DNA, as that later can't update itself.

@@ -2,37 +2,139 @@
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
    echo "Updates:"
-   echo "   update (--gitlab, --github) Updates Floflis (centralized, yet)"
+#   echo "   update (--gitlab, --github) Updates Floflis (centralized, yet)"
+   echo "   update                      Updates Floflis"
+fi
+
+# would detect fakeroot 
+#for path in ${LD_LIBRARY_PATH//:/ }; do
+#   if [[ "$path" == *libfakeroot ]]
+#      then
+#         echo "You're using fakeroot. Floflis won't work."
+#         exit
+#fi
+#done
+is_root=false
+if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
+   then
+      is_root=false
+   else
+      is_root=true
+fi
+maysudo=""
+if [ "$is_root" = "false" ]
+   then
+      maysudo="sudo"
+   else
+      maysudo=""
 fi
 
 if [ "$1" = "update" ] || [ "$1" = "updt" ] || [ "$1" = "next" ] || [ "$1" = "up" ]; then
-   if [ "$2" = "" ]; then
-      echo "Can't update yet on a decentralized manner. Please use 'update --gitlab' command."
-      echo ""
-      echo "When you can't update from git, I ask you to keep your clonned git folder of Floflis dna, update using 'git pull' inside it, optionally open init.sh and then manually re-install it using install.sh."
-      echo ""
-      echo "Type 'floflis update --gitlab' to update from GitLab, or 'floflis update --github' to update from GitHub."
-fi
+$maysudo bash /usr/lib/floflis/layers/core/alpha-updater/update.sh
+echo "(✓) Successfully updated Floflis (from GitLab)."
+#   if [ "$2" = "" ]; then
+#      echo "Can't update yet on a decentralized manner. Please use 'update --gitlab' command."
+#      echo ""
+#      echo "When you can't update from git, I ask you to keep your clonned git folder of Floflis dna, update using 'git pull' inside it, optionally open init.sh and then manually re-install it using install.sh."
+#      echo ""
+#      echo "Type 'floflis update --gitlab' to update from GitLab, or 'floflis update --github' to update from GitHub."
+#fi
 fi
 
-if [ "$1" = "update" ]; then
-   if [ "$2" = "gitlab" ] || [ "$2" = "--gitlab" ]; then
-      echo "- Updating Floflis dna (from GitLab)..."
-      echo "(i) Updating a Layer requires sudo mode;"
-     #this only updates the Floflis binaries/libs, not its install
-      cd "$FLOPREFIX"usr/lib/floflis/layers/dna && sudo git pull origin master
-      echo "(✓) Successfully updated Floflis DNA (from GitLab)."
-      # ensure install.sh is added with this git pull, and run it, with update scripts according to current version
-      cd "$FLOPREFIX"usr/lib/floflis/layers/core && sudo git pull origin master
-      echo "(✓) Successfully updated Floflis Core (from GitLab)."
-fi
-   if [ "$2" = "github" ] || [ "$2" = "--github" ]; then
-      echo "If you receive a blue screen, don't blame on us." && echo "- Updating Floflis DNA (from Microsoft GitHub)..."
-      echo "(i) Updating a Layer requires sudo mode;"
-      #this only updates the Floflis binaries/libs, not its install
-      cd "$FLOPREFIX"usr/lib/floflis/layers/dna && sudo git pull github master
-      echo "(✓) Successfully updated Floflis DNA (from Microsoft GitHub)."
-      cd "$FLOPREFIX"usr/lib/floflis/layers/core && sudo git pull github master
-      echo "(✓) Successfully updated Floflis Core (from Microsoft GitHub)."
-fi
-fi
+#if [ "$1" = "update" ]; then
+#   if [ "$2" = "gitlab" ] || [ "$2" = "--gitlab" ]; then
+#      echo "- Updating Floflis dna (from GitLab)..."
+#      echo "(i) Updating a Layer requires sudo mode;"
+#     #this only updates the Floflis binaries/libs, not its install
+#      cd "$FLOPREFIX"usr/lib/floflis/layers/dna && sudo git pull origin main
+#      echo "(✓) Successfully updated Floflis DNA (from GitLab)."
+#      # ensure install.sh is added with this git pull, and run it, with update scripts according to current version
+#      cd "$FLOPREFIX"usr/lib/floflis/layers/core && sudo git pull origin main
+#      echo "(✓) Successfully updated Floflis Core (from GitLab)."
+#fi
+#   if [ "$2" = "github" ] || [ "$2" = "--github" ]; then
+#      echo "If you receive a blue screen, don't blame on us." && echo "- Updating Floflis DNA (from Microsoft GitHub)..."
+#      echo "(i) Updating a Layer requires sudo mode;"
+#      #this only updates the Floflis binaries/libs, not its install
+#      cd "$FLOPREFIX"usr/lib/floflis/layers/dna && sudo git pull github main
+#      echo "(✓) Successfully updated Floflis DNA (from Microsoft GitHub)."
+#      cd "$FLOPREFIX"usr/lib/floflis/layers/core && sudo git pull github main
+#      echo "(✓) Successfully updated Floflis Core (from Microsoft GitHub)."
+#fi
+#fi
+
+
+
+
+
+
+
+
+##!/bin/bash
+#
+## load definitions & settings ---->
+#if [[ $(echo $PREFIX | grep -o "com.termux") == "com.termux" ]];
+#then
+#. /data/data/com.termux/files/usr/lib/floflis/./config
+#else
+#. /usr/lib/floflis/./config
+#export FLOPREFIX
+#fi
+#export flofmach && export flofdistro && export flofarch && export osfullname && export osname && export osversion && export osbuild && export osbuildcodename && export updatepatch && export year && export layer && export nxtlayer && export distrobase && export user && export specialbuildattempt
+## <---- load definitions & settings
+#
+#is_root=false
+#
+#if [ "$([[ $UID -eq 0 ]] || echo "Not root")" = "Not root" ]
+#   then
+#      is_root=false
+#   else
+#      is_root=true
+#fi
+#
+#$maysudo=""
+#
+#if [ "$is_root" = "false" ]
+#   then
+#      $maysudo="sudo"
+#   else
+#      $maysudo=""
+#fi
+#
+#dna_ascii=""" 
+#-. .-.   .-. .-.   .-. .-.   .
+#  \   \ /   \   \ /   \   \ /
+# / \   \   / \   \   / \   \
+#~   `-~ `-`   `-~ `-`   `-~ `-
+#"""
+##
+#echo "${dna_ascii}"
+##
+#cat << "EOF"
+#
+#  _            _           
+# |_  |   _   _|_  |  o   _ 
+# |   |  (_)   |   |  |  _>  
+#           
+#           Update
+#
+#EOF
+#
+#if [ "$updatepatch" = "0" ]; then
+#   echo "Updating Floflis to FU1..." && echo "${dna_ascii}"
+#   # here are the actions performed by this update patch
+#   # update status an progress is stored on texty file, so Floflis Update UI can use it
+#   
+#   # Update makes use of an API, where Floflis Update binary decides what to execute
+#   # API also supports to store when an update requires restart
+#   # API also supports kernel updates, if user chooses rolling release
+#   # "flo update" cmd runs floupdate bin
+#   
+#   # the user or custom-distro decides what to approve (user's pending updates are stored on backstage for review, until they are approved as safe)
+#   # updates on backstage could have peer-review
+#   # in an upcoming update, Floflis Update and UniStore will use Web3 Updater lib instead of their own. also, Floflis' binaries will be from UniStore, and .sh scripts will have their own ASCII icons.
+#   echo "Ok, updates have been applied."
+#   echo "Updating config file to register FU$updatepatch+1 update..." && echo "${dna_ascii}" #need to work/experimental
+#   $maysudo sed -i 's/updatepatch="0"/updatepatch="1"/g' "$FLOPREFIX"usr/lib/floflis/config
+#   echo "(✓) Success! Your Floflis has been updated."
+#fi
