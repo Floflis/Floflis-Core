@@ -122,6 +122,7 @@ echo "Testing if 01 works:"
 01
 
 if [[ $flofmach == "Termux" ]]; then
+echo "Installing nu shell..."
 apt install nushell #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
 apt install openssl
 apt upgrade
