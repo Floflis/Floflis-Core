@@ -63,25 +63,25 @@ if [ -e "$FLOPREFIX"usr/lib/floflis/layers/dna ]
 then
    echo "(✓) Floflis DNA is detected."
    echo "- Upgrading to Floflis Core..."
-   if [ ! -e /1 ]; then
+   if [ ! -e "$FLOPREFIX"1 ]; then
       echo "- Creating tree folder above root..."
-      echo "- Creating /1 (tree) folder..."
-      $maysudo mkdir /1
+      echo "- Creating "$FLOPREFIX"1 (tree) folder..."
+      $maysudo mkdir "$FLOPREFIX"1
    fi
-   echo "- Setting permissions on /1 (tree) folder..."
-   $maysudo chmod -R a+rwX /1
+   echo "- Setting permissions on "$FLOPREFIX"1 (tree) folder..."
+   $maysudo chmod -R a+rwX "$FLOPREFIX"1
 
    echo "Testing write permissions on tree folder..."
    echo "If it takes more than 30 seconds, please reboot your device and try again."
    echo "🤓 If u're nerd: root will be needed for applying chmod to folder. So, instead of being owned by root, tree folder will be writable by you as normal user."
-   echo -n > /1/temp.txt
+   echo -n > "$FLOPREFIX"1/temp.txt
    # only use it while Floflis Central isn't yet done:
-   echo -n > /1/temp2.txt
+   echo -n > "$FLOPREFIX"1/temp2.txt
 
-   if [ -e /1/temp2.txt ]
+   if [ -e "$FLOPREFIX"1/temp2.txt ]
    then
-      rm /1/temp.txt
-      rm /1/temp2.txt
+      rm "$FLOPREFIX"1/temp.txt
+      rm "$FLOPREFIX"1/temp2.txt
       
       if [ -e "$FLOPREFIX"usr/local/bin/*antiX* ]; then
          echo "- This is an antiX-based OS. Updating files..."
@@ -333,58 +333,58 @@ echo "- Installing the broken packages, efibootmgr and grub..."
 $maysudo apt-get install efibootmgr
 if [ "$flofarch" = "amd64" ]; then $maysudo apt-get install grub-efi-amd64-bin grub-efi-amd64-signed;fi
 
-if [ ! -e /1/config ]; then echo "Creating settings folder...";mkdir /1/config; fi
+if [ ! -e "$FLOPREFIX"1/config ]; then echo "Creating settings folder...";mkdir "$FLOPREFIX"1/config; fi
 
-#$maysudo cat > /1/config/dat.json << ENDOFFILE
+#$maysudo cat > "$FLOPREFIX"1/config/dat.json << ENDOFFILE
 #{"type":"config/os","url":{},"lang":"en-us","title":"Floflis Settings - 
 #ENDOFFILE
 
-#       echo "$()" > /1/config/dat.json
+#       echo "$()" > "$FLOPREFIX"1/config/dat.json
 
-       #$maysudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > "$FLOPREFIX"1/config/dat.json << ENDOFFILE
 #","user":" 
 #ENDOFFILE
 
-       #$(whoami) >> /1/config/dat.json
+       #$(whoami) >> "$FLOPREFIX"1/config/dat.json
 
-       #$maysudo cat > /1/config/dat.json << ENDOFFILE
+       #$maysudo cat > "$FLOPREFIX"1/config/dat.json << ENDOFFILE
 #"}
 #ENDOFFILE
 
-if [ ! -e /1/Floflis ]; then echo "Creating sys folder...";mkdir /1/Floflis; fi
-if [ ! -e /1/Floflis/system ]; then mkdir /1/Floflis/system;echo ""; fi
+if [ ! -e "$FLOPREFIX"1/Floflis ]; then echo "Creating sys folder...";mkdir "$FLOPREFIX"1/Floflis; fi
+if [ ! -e "$FLOPREFIX"1/Floflis/system ]; then mkdir "$FLOPREFIX"1/Floflis/system;echo ""; fi
     #tar xfvz 
 fi
 
    # Extracting data to sys folder...
-   # Setting permissions on /1/Floflis folder... chown -R root:root /1/Floflis chmod 700 /1/Floflis
-   # Creating Open Badges folder... /1/badges
+   # Setting permissions on "$FLOPREFIX"1/Floflis folder... chown -R root:root "$FLOPREFIX"1/Floflis chmod 700 "$FLOPREFIX"1/Floflis
+   # Creating Open Badges folder... "$FLOPREFIX"1/badges
    # badge for pneer since 06
    # file with claimed badges, send it to Floflis (and store its date), tell when badges are available for download
-   # /1/apps /1/appsclassic /1/games /1/gamesclassic
-   # Creating Apps folder... /1/Apps
+   # "$FLOPREFIX"1/apps "$FLOPREFIX"1/appsclassic "$FLOPREFIX"1/games "$FLOPREFIX"1/gamesclassic
+   # Creating Apps folder... "$FLOPREFIX"1/Apps
    # Installing apps...
-   if [ ! -e /1/programs ]; then echo "Creating folder for classic apps (/programs)...";$maysudo mkdir /1/programs; fi
-   if [ ! -e /1/libraries ]; then echo "Creating /libraries...";$maysudo mkdir /1/libraries; fi
-   if [ ! -e /1/libraries/replic ]; then echo "Creating /libraries/replic...";$maysudo mkdir /1/libraries/replic; fi
+   if [ ! -e "$FLOPREFIX"1/programs ]; then echo "Creating folder for classic apps (/programs)...";$maysudo mkdir "$FLOPREFIX"1/programs; fi
+   if [ ! -e "$FLOPREFIX"1/libraries ]; then echo "Creating /libraries...";$maysudo mkdir "$FLOPREFIX"1/libraries; fi
+   if [ ! -e "$FLOPREFIX"1/libraries/replic ]; then echo "Creating /libraries/replic...";$maysudo mkdir "$FLOPREFIX"1/libraries/replic; fi
    echo "- Setting permissions on /libraries/replic..."
-   $maysudo chmod -R a+rwX /1/libraries/replic/
-   if [ ! -f /1/Z-root ]; then echo "- Creating root folder inside tree...";$maysudo ln -s ../ Z-root; fi
+   $maysudo chmod -R a+rwX "$FLOPREFIX"1/libraries/replic/
+   if [ ! -f "$FLOPREFIX"1/Z-root ]; then echo "- Creating root folder inside tree...";$maysudo ln -s ../ Z-root; fi
    # Installing classic apps...
    # chmod cj
    # Creating folders for games and HTML5 files
    # Creating Games folder...
-   # /1/Games
+   # "$FLOPREFIX"1/Games
    # Creating HTML5 folder...
-   # /1/html5
+   # "$FLOPREFIX"1/html5
    # Installing HTML5 files...
-   if [ ! -e /1/src ]; then echo "Installing /1/src";$maysudo mkdir /1/src; fi
-   #echo "Installing /1/personal/data/issues"
-   #$maysudo mkdir /1/personal
-   #$maysudo mkdir /1/personal/data
-   #$maysudo mkdir /1/personal/data/issues
-   if [ ! -e /1/personal ]; then echo "- Creating /1/personal...";$maysudo mkdir /1/personal; fi
-   if [ ! -e /1/personal/data ]; then echo "- Creating /1/personal/data...";$maysudo mkdir /1/personal/data; fi
+   if [ ! -e "$FLOPREFIX"1/src ]; then echo "Installing "$FLOPREFIX"1/src";$maysudo mkdir "$FLOPREFIX"1/src; fi
+   #echo "Installing "$FLOPREFIX"1/personal/data/issues"
+   #$maysudo mkdir "$FLOPREFIX"1/personal
+   #$maysudo mkdir "$FLOPREFIX"1/personal/data
+   #$maysudo mkdir "$FLOPREFIX"1/personal/data/issues
+   if [ ! -e "$FLOPREFIX"1/personal ]; then echo "- Creating "$FLOPREFIX"1/personal...";$maysudo mkdir "$FLOPREFIX"1/personal; fi
+   if [ ! -e "$FLOPREFIX"1/personal/data ]; then echo "- Creating "$FLOPREFIX"1/personal/data...";$maysudo mkdir "$FLOPREFIX"1/personal/data; fi
    
    #task: run this cmd only if detecting ubuntu+chroot
    #removed. is this cmd an requirement? for now, lets experiment with an init script.
@@ -427,7 +427,7 @@ fi
    $maysudo sed -i 's/core/soil/g' "$FLOPREFIX"usr/lib/floflis/config && $maysudo sed -i 's/dna/core/g' "$FLOPREFIX"usr/lib/floflis/config
    
    echo "- Saving settings as JSON..."
-   cat > /1/Floflis/system/os.json << ENDOFFILE
+   cat > "$FLOPREFIX"1/Floflis/system/os.json << ENDOFFILE
 {
 "name":"",
 "version": "",
@@ -441,21 +441,21 @@ ENDOFFILE
 
    . "$FLOPREFIX"usr/lib/floflis/./config
 
-   contents="$(jq ".name = \"$osname\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
-   contents="$(jq ".version = \"$osversion\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
-   contents="$(jq ".build = \"$osbuild\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
-   contents="$(jq ".year = \"$year\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
-   contents="$(jq ".distrobase = \"$distrobase\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".name = \"$osname\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
+   contents="$(jq ".version = \"$osversion\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
+   contents="$(jq ".build = \"$osbuild\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
+   contents="$(jq ".year = \"$year\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
+   contents="$(jq ".distrobase = \"$distrobase\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
    
-   contents="$(jq ".layer = \"$layer\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
-   contents="$(jq ".nxtlayer = \"$nxtlayer\"" /1/Floflis/system/os.json)" && \
-   echo "${contents}" > /1/Floflis/system/os.json
+   contents="$(jq ".layer = \"$layer\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
+   contents="$(jq ".nxtlayer = \"$nxtlayer\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
+   echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
    echo "(✓) Floflis DNA has been upgraded to Floflis Core."
 else
    echo "(X) Floflis DNA isn't found. Please install Floflis DNA before installing Floflis Core."
