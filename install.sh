@@ -121,6 +121,12 @@ cd "$SCRIPTPATH"
 echo "Testing if 01 works:"
 01
 
+if [[ $flofmach == "Termux" ]]; then
+apt install nushell #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
+apt install openssl
+apt upgrade
+fi
+
 echo "Installing rmv..."
 cd include/rmv
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/Floflis/rmv.git .; fi
