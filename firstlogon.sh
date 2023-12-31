@@ -55,6 +55,15 @@ fi
 fi
 # <Core
 
+# Replace Nushell's banner in Termux:
+if [[ $flofmach == "Termux" ]]; then
+cp -f "$FLOPREFIX"usr/lib/floflis/layers/soil/to-merge/include-firstlogon/home-.config/nushell/termux-banner.txt "$FLOPREFIX"home/.config/nushell/termux-banner.txt
+cat >> "$FLOPREFIX"home/.config/nushell/config.nu <<EOF
+"$env.config.show_banner = false" out> $nu.config-path
+cat ~/.config/nushell/termux-banner.txt
+EOF
+fi
+
 # Install SSH:
 if [ "$(df ~ | tail -1 | awk '{print $1;}')" != "/cow" ]; then
 echo "DEBUG: Not a Live ISO"
