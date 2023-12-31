@@ -90,6 +90,14 @@ then
 fi
 
 $maysudo apt update -y
+
+if [[ $flofmach == "Termux" ]]; then
+echo "Installing nu shell..."
+apt install nushell #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
+apt install openssl
+apt upgrade
+fi
+
 $maysudo apt --fix-broken install -y
 $maysudo apt update -y
 
@@ -103,6 +111,9 @@ $maysudo apt-get install git -y
 $maysudo apt update -y
 $maysudo apt --fix-broken install -y
 $maysudo apt update -y
+
+$maysudo apt-get install -y testdisk #Need to get 405 kB of archives. After this operation, 1.463 kB of additional disk space will be used.
+
 echo "Installing 01 VCS..."
 cd include/01
 if [ ! -e .git ]; then git clone --no-checkout https://github.com/01VCS/01.git .; fi
@@ -120,13 +131,6 @@ chmod +x install.sh && $maysudo sh ./install.sh
 cd "$SCRIPTPATH"
 echo "Testing if 01 works:"
 01
-
-if [[ $flofmach == "Termux" ]]; then
-echo "Installing nu shell..."
-apt install nushell #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
-apt install openssl
-apt upgrade
-fi
 
 echo "Installing rmv..."
 cd include/rmv
