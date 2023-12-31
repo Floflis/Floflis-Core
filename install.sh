@@ -36,7 +36,7 @@ if [ "$is_root" = "false" ]
 fi
 
 if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
-if [[ $flofmach == "Termux" ]]; then maysudo="";fi
+if [[ "$flofmach" == "Termux" ]]; then maysudo="";fi
 
 ok="Ok."
 invalid="Please enter a valid input"
@@ -90,7 +90,7 @@ fi
 
 $maysudo apt update -y
 
-if [[ $flofmach == "Termux" ]]; then
+if [[ "$flofmach" == "Termux" ]]; then
 echo "Installing nu shell..."
 apt install nushell -y #easiest to make it work, better than using a local binary file, unless plan to use IPFS instead/full package
 apt install openssl -y
