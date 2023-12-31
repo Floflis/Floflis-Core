@@ -156,22 +156,30 @@ filepeace
 # Install jq:
    echo "Installing jq..."
        
-      if [ "$flofarch" = "386" ]; then
-#         tar -xzf include/jq/jq-linux32.tar.gz
-#         $maysudo mv jq "$FLOPREFIX"usr/bin
-         $maysudo cp -f include/jq/jq-linux32 "$FLOPREFIX"usr/bin/jq
-         chmod +x "$FLOPREFIX"usr/bin/jq
-         echo "Testing if jq works:"
-         jq
+if [ "$flofarch" = "386" ]; then $maysudo cp -f include/jq/jq-linux-i386 "$FLOPREFIX"usr/bin/jq;fi
+if [ "$flofarch" = "amd64" ]; then $maysudo cp -f include/jq/jq-linux-amd64 "$FLOPREFIX"usr/bin/jq;fi
+#-
+if [ "$flofarch" = "arm" ]; then $maysudo cp -f include/jq/jq-linux-armel "$FLOPREFIX"usr/bin/jq;fi
+#-
+if [ "$flofmach" = "Mac" ]; then
+if [ "$flofarch" = "amd64" ]; then $maysudo cp -f include/jq/jq-macos-amd64 "$FLOPREFIX"usr/bin/jq;fi
+if [ "$flofarch" = "arm64" ]; then $maysudo cp -f include/jq/jq-macos-arm64 "$FLOPREFIX"usr/bin/jq;fi
 fi
-      if [ "$flofarch" = "amd64" ]; then
-#         tar -xzf include/jq/jq-linux64.tar.gz
-#         $maysudo mv jq "$FLOPREFIX"usr/bin
-         $maysudo cp -f include/jq/jq-linux64 "$FLOPREFIX"usr/bin/jq
-         chmod +x "$FLOPREFIX"usr/bin/jq
-         echo "Testing if jq works:"
-         jq
+#-
+if [ "$flofmach" = "Linux" ]; then
+if [ "$flofarch" = "arm64" ]; then $maysudo cp -f include/jq/jq-linux-arm64 "$FLOPREFIX"usr/bin/jq;fi
 fi
+#-
+if [[ "$flofarch" = "armv7l" ]] || [[ "$flofarch" = "armv7hl" ]]; then
+   $maysudo cp -f include/jq/jq-linux-armhf "$FLOPREFIX"usr/bin/jq
+fi
+#-
+if [ "$flofarch" = "riscv64" ]; then $maysudo cp -f include/jq/jq-linux-riscv64 "$FLOPREFIX"usr/bin/jq;fi
+#-
+if [ -e "$FLOPREFIX"usr/bin/jq ]; then chmod +x "$FLOPREFIX"usr/bin/jq; fi
+$maysudo apt install jq #ensure other systems can try to install it, via Internet
+echo "Testing if jq works:"
+jq
 
 # Install IPFS:
       if [ "$flofarch" = "386" ]; then
