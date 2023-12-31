@@ -36,7 +36,7 @@ if [ -e "$FLOPREFIX"tmp/cubicmode ]; then maysudo="";fi
 if [[ $flofmach == "Termux" ]]; then maysudo="";fi
 
 if [ "$1" = "update" ] || [ "$1" = "updt" ] || [ "$1" = "next" ] || [ "$1" = "up" ]; then
-$maysudo bash /usr/lib/floflis/layers/core/alpha-updater/update.sh
+$maysudo bash "$FLOPREFIX"usr/lib/floflis/layers/core/alpha-updater/update.sh
 echo "(✓) Successfully updated Floflis (from GitLab)."
 #   if [ "$2" = "" ]; then
 #      echo "Can't update yet on a decentralized manner. Please use 'update --gitlab' command."
