@@ -153,6 +153,12 @@ fi
                 sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/planetary && bash ./firstlogon.sh
 fi
 # <Planetary
+# Quantum>
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/quantum/firstlogon.sh ];then
+                echo "- Openning Floflis Quantum firstlogon installer..."
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/quantum/firstlogon.sh && cd "$FLOPREFIX"usr/lib/floflis/layers/quantum && bash ./firstlogon.sh
+fi
+# <Quantum
 fi          
 
 echo "- Cleanning install..."

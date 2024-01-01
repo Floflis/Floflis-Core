@@ -129,6 +129,12 @@ fi
                 sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/planetary/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/planetary && sh ./firstboot
 fi
 # <Planetary
+# Quantum>
+             if [ -f "$FLOPREFIX"usr/lib/floflis/layers/quantum/firstboot ];then
+                echo "- Openning Floflis Quantum firstboot installer..."
+                sudo chmod +x "$FLOPREFIX"usr/lib/floflis/layers/quantum/firstboot && cd "$FLOPREFIX"usr/lib/floflis/layers/quantum && sh ./firstboot
+fi
+# <Quantum
 fi
           #the next line creates an empty file so it won't run the next boot
           touch $FLAG

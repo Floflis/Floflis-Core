@@ -474,7 +474,12 @@ fi
 }
 ENDOFFILE
 
-   . "$FLOPREFIX"usr/lib/floflis/./config
+if [[ "$flofmach" == "Termux" ]]; then
+chmod +x firstboot
+sh ./firstboot
+bash firstlogon.sh
+#cd "$SCRIPTPATH"
+fi
 
    contents="$(jq ".name = \"$osname\"" "$FLOPREFIX"1/Floflis/system/os.json)" && \
    echo "${contents}" > "$FLOPREFIX"1/Floflis/system/os.json
