@@ -88,6 +88,14 @@ then
          $maysudo cp -f ./include/antiX/antiX-cli-cc "$FLOPREFIX"usr/local/bin/
 fi
 
+#Fix Termux HTTPS issues that may arise from broken environment (probably bc of old Play Store -> F-Droid migration)
+if [[ "$flofmach" == "Termux" ]]; then
+export LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib/ #from https://github.com/termux/termux-app/issues/2674#issuecomment-1077530046
+ln -s -T /data/data/com.termux/files/usr/lib/openssl-1.1/libssl.so.1.1 /data/data/com.termux/files/usr/lib/libssl.so.1.1
+ln -s -T /data/data/com.termux/files/usr/lib/openssl-1.1/libcrypto.so.1.1 /data/data/com.termux/files/usr/lib/libcrypto.so.1.1
+#from https://github.com/termux/termux-app/issues/2674#issuecomment-1156736593 and https://unix.stackexchange.com/a/440908
+fi
+
 $maysudo apt update -y
 
 if [[ "$flofmach" == "Termux" ]]; then
